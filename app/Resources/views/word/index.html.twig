@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+
+    {% for word in words %}
+        {{ word.text }}
+        {{ word.translate.ukrainian }}
+    {% endfor %}
+{% endblock %}
