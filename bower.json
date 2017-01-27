@@ -1,0 +1,20 @@
+{
+  "name": "vocabulary",
+  "description": "Homework 14: Vocabulary ==========",
+  "main": "index.js",
+  "authors": [
+    "Vladimir Nimchyn <nima.vova@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/nima-vova/vocabulary",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
