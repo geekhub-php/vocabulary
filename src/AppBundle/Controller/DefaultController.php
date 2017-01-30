@@ -19,17 +19,17 @@ class DefaultController extends Controller
 
   //      return new Response($t);
         $em=$this->getDoctrine()->getManager();
-        $word = $em->getRepository('AppBundle:Word\Word')->findOneById(3);
+        $word = $em->getRepository('AppBundle:Word\Word')->findOneById(5);
         //$word->translate('en')->getName();
-         dump($word->translate('en')->getName());
-        return $this->render('index.html.twig', array('data' => $word->translate('en')->getName()));
+         dump($word->translate('EN')->getName());
+        return $this->render('index.html.twig', array('data' => $word->translate('EN')->getName()));
     }
 
 
     public function informationAction(Request $request)
     {
 
-
+/*
         $word = new Word;
         $word->translate('fr')->setName('Chaussures');
         $word->translate('en')->setName('Shoes');
@@ -38,7 +38,7 @@ class DefaultController extends Controller
         $word->mergeNewTranslations();
         $em->flush();
 
-
+*/
         //$category->translate('en')->getName();
 
         return $this->render('index.html.twig', array('data' => "data"));
