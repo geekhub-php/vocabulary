@@ -1,3 +1,22 @@
+Geekhub PHP HomeWork#14: Symfony Vocabulary Application - Translations
+=
+
+####EER Diagram:
+
+https://docs.google.com/drawings/d/1gXIQH6vCcoeqFa2ess2fpVgOADpIkfmPAOGW7HD2LCs/edit?usp=sharing
+
+####Setup:
+
+Note: Before continue, install Node.js.
+
+```bash
+$ git clone -b hw14-andrey-lukashenko https://github.com/AndreyLuka/geekhub-php-vocabulary.git
+$ cd geekhub-php-vocabulary
+$ composer install
+$ php bin/console doctrine:fixtures:load
+``` 
+
+
 Homework 14: Vocabulary
 ==========
 
