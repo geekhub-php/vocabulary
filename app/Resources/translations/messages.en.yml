@@ -1,0 +1,13 @@
+homepage:
+    lable: Your vocabulary
+    navigation:
+        login: Login
+        logout: Logout
+        registration: Registration
+        update: Update your profile
+        hi: Hi
+    nav_menu:
+         home: Home
+         create_wish_list: Create wish list
+         update_wish_list: Update wish list
+         slider: Slider

@@ -1,0 +1,12 @@
+homepage:
+    lable: Ton dictionnaire
+    navigation:
+        login: login
+        logout: logout
+        registration: registration
+        hi: bonjour
+    nav_menu:
+         home: home
+         create_wish_list: Créer la liste de souhaits
+         update_wish_list: Mise à jour de la liste de souhaits
+         slider: Slider

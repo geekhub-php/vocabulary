@@ -1,0 +1,23 @@
+{% extends 'AppBundle:Pages:homepage.html.twig' %}
+
+{% block body %}
+    <div class="single">
+    <div class="container">
+        <div class="comment-bottom heading" style="clear: both">
+            {% if error %}
+                <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+
+            <form action="{{ path('login') }}" method="post">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="_username" value="{{ last_username }}" required/>
+                <label for="password">Password:</label><br/>
+                <input type="password" id="password" class="form-control" name="_password" required/>
+                <input type="submit" value="Login" class="btn btn-default pull-right" />
+                <input type="hidden" name="_target_path" value="" />
+            </form>
+        </div>
+    </div>
+    </div>
+
+{% endblock %}

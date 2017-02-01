@@ -1,13 +1,22 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<head>
+    <title>Your dictionary</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    {% block stylesheets %}{% endblock %}
+    {% block javascript %}{% endblock %}
+</head>
+<body>
+
+{% block navigation %}{% endblock %}
+
+{% block banner %}{% endblock %}
+
+{% block body %}{% endblock %}
+
+{% block slider %}{% endblock %}
+
+{% block footer %}{% endblock %}
+</body>
 </html>
