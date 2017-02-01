@@ -98,5 +98,28 @@ class Wishlist
     {
         return $this->words;
     }
-}
 
+    /**
+     * Add word
+     *
+     * @param \AppBundle\Entity\Word $word
+     *
+     * @return Wishlist
+     */
+    public function addWord(\AppBundle\Entity\Word $word)
+    {
+        $this->words[] = $word;
+
+        return $this;
+    }
+
+    /**
+     * Remove word
+     *
+     * @param \AppBundle\Entity\Word $word
+     */
+    public function removeWord(\AppBundle\Entity\Word $word)
+    {
+        $this->words->removeElement($word);
+    }
+}

@@ -1,0 +1,21 @@
+{% extends 'AppBundle::base.html.twig' %}
+{% block content %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>{% trans %}template.word.index.word{% endtrans %}</th>
+                <th>{% trans %}template.word.index.language{% endtrans %}</th>
+                <th>{% trans %}template.word.index.action{% endtrans %}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Ble</td>
+                <td>Ru</td>
+                <td>Add</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

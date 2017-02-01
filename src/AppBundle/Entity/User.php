@@ -2,15 +2,20 @@
 
 namespace AppBundle\Entity;
 
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User
  *
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
+ * @UniqueEntity(fields={"username"})
+ * @UniqueEntity(fields={"email"})
  */
-class User
+class User implements UserInterface, \Serializable
 {
     /**
      * @var int
@@ -18,6 +23,7 @@ class User
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     *
      */
     private $id;
 
@@ -25,6 +31,8 @@ class User
      * @var string
      *
      * @ORM\Column(name="username", type="string", length=100, unique=true)
+     * @Assert\NotBlank(message="user.form.registration.error.not_blank.username")
+     * @Assert\Length(min=3, minMessage="user.form.registration.error.length.username")
      */
     private $username;
 
@@ -32,14 +40,20 @@ class User
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
+     * @Assert\Email()
+     * @Assert\NotBlank(message="user.form.registration.error.not_blank.email")
      */
     private $email;
 
+
     /**
-     * @var string
-     *
+     * @Assert\NotBlank(message="user.form.registration.error.not_blank.password")
+     * @Assert\Length(
+     *     min = 6,
+     *     max=4096,
+     *     minMessage="user.form.registration.error.length.password")
      */
-    private $plainpassword;
+    private $plainPassword;
 
     /**
      * @var string
@@ -52,8 +66,21 @@ class User
      * @var string
      *
      * @ORM\Column(name="fullname", type="string", length=255)
+     * @Assert\NotBlank(message="user.form.registration.error.not_blank.fullname")
      */
     private $fullname;
+
+    /**
+     *
+     * @ORM\Column(type="boolean")
+     */
+    private $isActive = true;
+
+    /**
+     *
+     * @ORM\Column(type="json_array")
+     */
+    private $roles = [];
 
     /**
      * @var string
@@ -68,7 +95,6 @@ class User
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\Language")
      */
     private $language;
-
 
     /**
      * Get id
@@ -111,9 +137,9 @@ class User
      *
      * @return User
      */
-    public function setPlainpassword($plainpassword)
+    public function setPlainPassword($plainPassword)
     {
-        $this->plainpassword = $plainpassword;
+        $this->plainPassword = $plainPassword;
 
         return $this;
     }
@@ -123,9 +149,9 @@ class User
      *
      * @return string
      */
-    public function getPlainpassword()
+    public function getPlainPassword()
     {
-        return $this->plainpassword;
+        return $this->plainPassword;
     }
 
     /**
@@ -174,6 +200,45 @@ class User
     public function getFullname()
     {
         return $this->fullname;
+    }
+
+    /**
+     * Set isActive
+     *
+     * @param boolean $isActive
+     *
+     * @return User
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return boolean
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
+    }
+
+    public function getRoles()
+    {
+        return $this->roles;
+    }
+
+    /**
+     * @param $roles
+     * @return $this
+     */
+    public function setRoles($roles)
+    {
+        $this->roles = array_unique($roles);
+        return $this;
     }
 
     /**
@@ -246,5 +311,45 @@ class User
     public function getLanguage()
     {
         return $this->language;
+    }
+
+    /**
+     * @return null
+     */
+    public function getSalt()
+    {
+        return null;
+    }
+
+    /**
+     *
+     */
+    public function eraseCredentials()
+    {
+        $this->plainPassword = null;
+    }
+
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt,
+        ));
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt
+            ) = unserialize($serialized);
     }
 }

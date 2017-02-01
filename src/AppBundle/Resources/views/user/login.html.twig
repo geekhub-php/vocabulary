@@ -1,0 +1,11 @@
+{% extends 'AppBundle::base.html.twig' %}
+{% block content %}
+{% if error %}
+    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+{% endif %}
+    {% form_theme form 'AppBundle::form.html.twig' %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn btn-default" type="submit">Go!</button>
+    {{ form_end(form) }}
+{% endblock %}

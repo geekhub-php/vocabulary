@@ -1,0 +1,26 @@
+user:
+    form:
+        login:
+            label:
+                _username: Логин
+                _password: Пароль
+        registration:
+            label:
+                username: Логин
+                password: Пароль
+                repeated_password: Подтвердите пароль
+                language: Выберите язык
+                fullname: Имя и фамилия
+                email: Email
+template:
+    navbar:
+        home: Главная
+        add_word: Добавить слово
+        login: Войти
+        register: Регистрация
+        profile: Профиль
+    word:
+        index:
+            word: Слово
+            language: Язык
+            action: Действие

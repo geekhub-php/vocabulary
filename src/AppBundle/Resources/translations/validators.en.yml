@@ -1,0 +1,12 @@
+user:
+    form:
+        registration:
+            error:
+                not_blank:
+                    username: Enter a username
+                    email: Enter an email
+                    password: Enter a password
+                    fullname: Enter fullname
+                length:
+                    username: Min length = 3
+                    password: Min length = 6

@@ -1,0 +1,35 @@
+{
+  "name": "vocabulary",
+  "version": "1.0.0",
+  "description": "geekhub homework",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xFLy3r/vocabulary.git"
+  },
+  "author": "xFLy3r",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xFLy3r/vocabulary/issues"
+  },
+  "homepage": "https://github.com/xFLy3r/vocabulary#readme",
+  "dependencies": {
+    "bower": "^1.8.0",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-clean": "^0.3.2",
+    "gulp-clean-css": "^2.3.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-less": "^3.3.0",
+    "gulp-sourcemaps": "^2.4.0",
+    "gulp-uglify": "^2.0.1",
+    "less": "^2.7.2"
+  }
+}
