@@ -80,7 +80,7 @@ class User extends BaseSuperClass implements AdvancedUserInterface, \Serializabl
     /**
      * @var Wishlist
      *
-     * @ORM\OneToOne(targetEntity="Wishlist", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="Wishlist", mappedBy="user", cascade={"persist"})
      */
     private $wishlist;
 

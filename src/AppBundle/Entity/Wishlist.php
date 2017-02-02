@@ -23,6 +23,13 @@ class Wishlist extends BaseSuperClass
     private $name;
 
     /**
+     * @var User
+     *
+     * @ORM\OneToOne(targetEntity="User", inversedBy="wishlist")
+     */
+    private $user;
+
+    /**
      * @var \Doctrine\Common\Collections\ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="Word", inversedBy="wishlists")
@@ -60,6 +67,30 @@ class Wishlist extends BaseSuperClass
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return Wishlist
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 
     /**

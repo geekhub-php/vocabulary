@@ -2,6 +2,7 @@
 
 namespace AppBundle\Security;
 
+use AppBundle\Entity\Wishlist;
 use AppBundle\Entity\Word;
 use AppBundle\Entity\User;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
@@ -43,7 +44,11 @@ class AppVoter extends Voter
         }
 
         // only vote on this objects inside this voter
-        if (!($subject instanceof Word || $subject instanceof User)) {
+        if (!(
+            $subject instanceof Word ||
+            $subject instanceof User ||
+            $subject instanceof Wishlist
+        )) {
             return false;
         }
 

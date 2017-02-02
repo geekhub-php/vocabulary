@@ -31,6 +31,8 @@ class WishlistController extends Controller
      */
     public function showAction(Wishlist $wishlist, $page = 1)
     {
+        $this->denyAccessUnlessGranted('edit', $wishlist);
+
         $words = $this->getDoctrine()
             ->getRepository('AppBundle:Word')
             ->findAllByWishlist($wishlist->getId());
@@ -60,6 +62,8 @@ class WishlistController extends Controller
      */
     public function addWordAction(Wishlist $wishlist, Word $word)
     {
+        $this->denyAccessUnlessGranted('edit', $wishlist);
+
         $wishlist->addWord($word);
 
         $em = $this->getDoctrine()->getManager();
@@ -84,6 +88,8 @@ class WishlistController extends Controller
      */
     public function removeWordAction(Wishlist $wishlist, Word $word)
     {
+        $this->denyAccessUnlessGranted('edit', $wishlist);
+
         $wishlist->removeWord($word);
         $word->removeWishlist($wishlist);
 
