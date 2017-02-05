@@ -42,7 +42,7 @@ class WishlistController extends Controller
         );
 
         return $this->render('AppBundle:word:index.html.twig', array(
-            'title'      => 'Wishlist',
+            'title'      => $this->get('translator')->trans('wishlist.title'),
             'pagination' => $pagination
         ));
     }

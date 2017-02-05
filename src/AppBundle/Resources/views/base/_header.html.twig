@@ -9,7 +9,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ path('homepage') }}">Vocabulary</a>
+                <a class="navbar-brand" href="{{ path('homepage') }}">{{ 'base.siteTitle'|trans }}</a>
             </div>
 
             {% include 'AppBundle:default:_navbar_top_links.html.twig' %}
@@ -26,9 +26,9 @@
                 </ul>
                 <form class="navbar-form navbar-right">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
+                        <input type="text" class="form-control" placeholder="{{ 'base.search'|trans }}">
                     </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
+                    <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
                 </form>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container -->

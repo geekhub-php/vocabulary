@@ -1,0 +1,41 @@
+base:
+  siteTitle: Словник
+  search: Пошук
+  save: Зберегти
+  edit: Редагувати
+  update: Оновити
+  delete: Видалити
+  author: Автор
+  created: Створено
+  updated: Оновлено
+  actions: Дії
+  'Hello, %name%': Привіт, %name%!
+
+user:
+  signup: Зареєструватися
+  login: Вхід
+  logout: Вихід
+  loggedin: Ви увійшли у систему.
+  profile:
+    title: Мій профіль
+
+wishlist:
+  title: Список бажань
+  add: Додати до списку бажань
+  remove: Видалити зі списку бажань
+
+word:
+  titleOne: Слово
+  titleMany: Слова
+  new: Додати нове слово
+  edit: Редагувати слово
+
+Email: Електронна пошта
+Username: Ім'я користувача
+Password: Пароль
+Repeat Password: Повторити пароль
+First name: Ім'я
+Last name: Прізвище
+
+Next: false
+Previous: false

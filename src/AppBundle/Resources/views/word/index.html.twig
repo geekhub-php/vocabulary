@@ -9,19 +9,19 @@
 
                     <h2>{{ title }}</h2>
                     {% if is_granted('create_word', app.user) %}
-                        <p><a href="{{ path('word_new') }}">Add new word</a></p>
+                        <p><a href="{{ path('word_new') }}">{{ 'word.new'|trans }}</a></p>
                     {% endif %}
 
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead>
                             <tr>
-                                <th>Word</th>
-                                <th>Author</th>
-                                <th>Created</th>
-                                <th>Updated</th>
+                                <th>{{ 'word.titleOne'|trans }}</th>
+                                <th>{{ 'base.author'|trans }}</th>
+                                <th>{{ 'base.created'|trans }}</th>
+                                <th>{{ 'base.updated'|trans }}</th>
                                 {% if is_granted('edit_word', app.user) %}
-                                    <th>Actions</th>
+                                    <th>{{ 'base.actions'|trans }}</th>
                                 {% endif %}
                             </tr>
                             </thead>
@@ -35,14 +35,14 @@
                                     <td>
                                         {% if is_granted('edit_word', app.user) %}
                                             {% if word in app.user.wishlist.words %}
-                                                <a class="btn btn-danger" href="{{ path('wishlist_remove_word', {'id': app.user.wishlist.id, 'wordId': word.id}) }}">Remove from wishlist</a>
+                                                <a class="btn btn-danger" href="{{ path('wishlist_remove_word', {'id': app.user.wishlist.id, 'wordId': word.id}) }}">{{ 'wishlist.remove'|trans }}</a>
                                             {% else %}
-                                                <a class="btn btn-default" href="{{ path('wishlist_add_word', {'id': app.user.wishlist.id, 'wordId': word.id}) }}">Add to wishlist</a>
+                                                <a class="btn btn-default" href="{{ path('wishlist_add_word', {'id': app.user.wishlist.id, 'wordId': word.id}) }}">{{ 'wishlist.add'|trans }}</a>
                                             {% endif %}
-                                            <a class="btn btn-default" href="{{ path('word_edit', {'id': word.id}) }}">Edit</a>
+                                            <a class="btn btn-default" href="{{ path('word_edit', {'id': word.id}) }}">{{ 'base.edit'|trans }}</a>
                                         {% endif %}
                                         {% if is_granted('edit', word) %}
-                                            <a class="btn btn-danger" href="{{ path('word_delete', {'id': word.id}) }}">Delete</a>
+                                            <a class="btn btn-danger" href="{{ path('word_delete', {'id': word.id}) }}">{{ 'base.delete'|trans }}</a>
                                         {% endif %}
                                     </td>
                                 </tr>

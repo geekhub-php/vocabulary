@@ -4,10 +4,13 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <h1>{{ formTitle }}</h1>
+                <h1>{{ title }}</h1>
 
                 {{ form_start(form) }}
                 {{ form_widget(form) }}
+                <div class="form-group">
+                    <button type="submit" class="btn-default btn">{{ 'base.save'|trans }}</button>
+                </div>
                 {{ form_end(form) }}
             </div>
         </div>

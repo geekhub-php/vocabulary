@@ -1,0 +1,41 @@
+base:
+  siteTitle: Vocabulaire
+  search: Rechercher
+  save: Enregistrer
+  edit: Modifier
+  update: Mise à jour
+  delete: Supprimer
+  author: Auteur
+  created: Créé
+  updated: Mis à jour
+  actions: Actions
+  'Hello, %name%': Bonjour, %name%!
+
+user:
+  signup: Inscription
+  login: Connexion
+  logout: Déconnexion
+  loggedin: Vous êtes connecté.
+  profile:
+    title: Mon profil
+
+wishlist:
+  title: Liste de souhaits
+  add: Ajouter à la liste d'envies
+  remove: Supprimer de la liste
+
+word:
+  titleOne: Mot
+  titleMany: Mots
+  new: Ajouter un nouveau mot
+  edit: Modifier le mot
+
+Email: Courriel
+Username: Nom d'utilisateur
+Password: Mot de passe
+Repeat Password: Répétez le mot de passe
+First name: Prénom
+Last name: Nom Prénom
+
+Next: false
+Previous: false

@@ -23,7 +23,7 @@ class UserController extends Controller
      *
      * @return Response
      */
-    public function newAction(Request $request)
+    public function signupAction(Request $request)
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
@@ -47,10 +47,9 @@ class UserController extends Controller
             return $this->redirectToRoute('homepage');
         }
 
-        return $this->render('AppBundle:user:form.html.twig', array(
-            'formTitle' => 'Registration',
-            'form'      => $form->createView(),
-            'error'     => null
+        return $this->render('AppBundle:user:signup.html.twig', array(
+            'title' => $this->get('translator')->trans('user.signup'),
+            'form'      => $form->createView()
         ));
     }
 
@@ -74,8 +73,8 @@ class UserController extends Controller
             '_username' => $lastUsername
         ));
 
-        return $this->render('AppBundle:user:form.html.twig', array(
-            'formTitle' => 'Login',
+        return $this->render('AppBundle:user:login.html.twig', array(
+            'title' => $this->get('translator')->trans('user.login'),
             'form'      => $form->createView(),
             'error'     => $error
         ));

@@ -36,7 +36,7 @@ class WordController extends Controller
         );
 
         return $this->render('AppBundle:word:index.html.twig', array(
-            'title'      => 'Words',
+            'title'      => $this->get('translator')->trans('word.titleMany'),
             'pagination' => $pagination
         ));
     }
@@ -72,8 +72,8 @@ class WordController extends Controller
             return $this->redirectToRoute('word_index');
         }
 
-        return $this->render('AppBundle:default:form.html.twig', array(
-            'formTitle' => 'Add new word',
+        return $this->render('AppBundle:word:new.html.twig', array(
+            'title' => $this->get('translator')->trans('word.new'),
             'form'      => $form->createView()
         ));
     }
@@ -107,8 +107,8 @@ class WordController extends Controller
             return $this->redirectToRoute('word_index');
         }
 
-        return $this->render('AppBundle:default:form.html.twig', array(
-            'formTitle' => 'Edit word',
+        return $this->render('AppBundle:word:edit.html.twig', array(
+            'title' => $this->get('translator')->trans('word.edit'),
             'form' => $form->createView()
         ));
     }
