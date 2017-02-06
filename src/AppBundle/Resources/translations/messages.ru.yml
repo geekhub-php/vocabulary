@@ -9,7 +9,7 @@ base:
   created: Создано
   updated: Обновлено
   actions: Действия
-  'Hello,% name%': Привет, % name%!
+  'Hello, %name%': Привет, %name%!
 
 user:
   signup: Зарегистрироваться
