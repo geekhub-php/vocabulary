@@ -29,33 +29,33 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
     {
 /*
         $word = new Word;
-        $word->translate('UK')->setName('слон');
-        $word->translate('EN')->setName('elephant');
-        $word->translate('BEI')->setName('слон');
+        $word->translate('uk')->setName('слон');
+        $word->translate('en')->setName('elephant');
+        $word->translate('bel')->setName('слон');
         $manager->persist($word);
         $word->mergeNewTranslations();
         $manager->flush();
 
         $word = new Word;
-        $word->translate('UK')->setName('картопля');
-        $word->translate('EN')->setName('potato');
-        $word->translate('BEI')->setName('бульба');
+        $word->translate('uk')->setName('картопля');
+        $word->translate('en')->setName('potato');
+        $word->translate('bel')->setName('бульба');
         $manager->persist($word);
         $word->mergeNewTranslations();
         $manager->flush();
 
         $word = new Word;
-        $word->translate('UK')->setName('сало');
-        $word->translate('EN')->setName('creesh');
-        $word->translate('BEI')->setName('сала');
+        $word->translate('uk')->setName('сало');
+        $word->translate('en')->setName('creesh');
+        $word->translate('bel')->setName('сала');
         $manager->persist($word);
         $word->mergeNewTranslations();
         $manager->flush();
 
         $word = new Word;
-        $word->translate('UK')->setName('батьківщина');
-        $word->translate('EN')->setName('homeland');
-        $word->translate('BEI')->setName('радзіма');
+        $word->translate('uk')->setName('батьківщина');
+        $word->translate(en')->setName('homeland');
+        $word->translate('bel')->setName('радзіма');
         $manager->persist($word);
         $word->mergeNewTranslations();
         $manager->flush();

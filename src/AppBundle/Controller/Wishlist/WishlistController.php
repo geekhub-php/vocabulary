@@ -43,11 +43,12 @@ class WishlistController extends Controller
 
             return $this->redirectToRoute('admin');
         }
-
+          dump($wishlist->getWords());
           return $this->render('admin/index.html.twig', array(
             'wishlist' => $wishlist,
             // 'id' =>$id,
             'edit_form' => $editForm->createView(),
+              'words'=>$wishlist->getWords(),
 
         ));
     }
