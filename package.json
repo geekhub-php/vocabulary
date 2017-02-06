@@ -1,0 +1,31 @@
+{
+  "name": "vocabulary",
+  "version": "1.0.0",
+  "description": "Homework 14: Vocabulary ==========",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nima-vova/vocabulary.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nima-vova/vocabulary/issues"
+  },
+  "homepage": "https://github.com/nima-vova/vocabulary#readme",
+  "dependencies": {
+    "bower": "^1.8.0",
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-less": "^3.3.0",
+    "gulp-uglify": "^2.0.1",
+    "less": "^2.7.2"
+  }
+}

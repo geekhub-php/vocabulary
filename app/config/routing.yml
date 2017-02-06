@@ -1,3 +1,33 @@
+homepage:
+    path:     /{_locale}
+    defaults: { _controller: AppBundle:Default:index, _locale: en }
+    requirements:
+        _locale: en|bel|uk
+
+#information:
+ #   path:     /{_locale}/information
+ #   defaults: { _controller: AppBundle:Default:information, _locale: en }
+  #  requirements:
+  #      _locale: en|bel|uk
+
+#login:
+ #   path:     /{_locale}/login
+  #  defaults: { _controller: AppBundle:Default:login, _locale: en }
+   # requirements:
+    #    _locale: en|bel|uk
+
+logout:
+    path: /logout
+
+#admin:
+ #   path:     /{_locale}/admin/{id}
+  #  defaults: { _controller: AppBundle:Wishlist:editWishlist, _locale: en, id: 1 }
+   # methods:  [GET, POST]
+
+    #requirements:
+    #  _locale: en|bel|uk
+     # id: '\d+'
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
