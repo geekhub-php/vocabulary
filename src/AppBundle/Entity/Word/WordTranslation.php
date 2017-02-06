@@ -3,7 +3,8 @@
 namespace AppBundle\Entity\Word;
 
 use Doctrine\ORM\Mapping as ORM;
-use Knp\DoctrineBehaviors\Model;
+//use Knp\DoctrineBehaviors\Model;
+use Knp\DoctrineBehaviors\Model\Translatable\Translation;
 
 
 
@@ -16,10 +17,10 @@ use Knp\DoctrineBehaviors\Model;
  */
 class WordTranslation
 {
-    use Model\Translatable\Translation;
+    //use Model\Translatable\Translation;
 
 
-
+    use Translation;
 
     /**
      * @var string

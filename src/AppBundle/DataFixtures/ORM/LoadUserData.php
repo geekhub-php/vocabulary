@@ -7,7 +7,7 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use AppBundle\Entity\Word\Word;
 use AppBundle\Entity\Word\WordTranslation;
-use AppBundle\Entity\Whishlist\Wishlist;
+use AppBundle\Entity\Wishlist\Wishlist;
 use AppBundle\Entity\User\User;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
@@ -59,19 +59,33 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $manager->persist($word);
         $word->mergeNewTranslations();
         $manager->flush();
-        */
+
         $user = new User();
-        $user->setLogin('user');
+        $user->setUsername('user1');
 
         //$user->setSalt(md5(uniqid()));
-        $test_password = 'user';
+        $test_password = 'user1';
         $encoder = $this->container->get('security.password_encoder');
         $password = $encoder->encodePassword($user, $test_password);
         $user->setPassword($password);
         $user->setRole('ROLE_USER');
         $manager->persist($user);
         $manager->flush();
+        */
 
+        $wishlist = new Wishlist();
+        $user = $manager->getRepository('AppBundle:User\User')->find('1');
+        $wishlist->setUser($user);
+        $word = $manager->getRepository('AppBundle:Word\Word')->find('4');
+        $wishlist->addWord($word);
+        $word = $manager->getRepository('AppBundle:Word\Word')->find('5');
+        $wishlist->addWord($word);
+        $word = $manager->getRepository('AppBundle:Word\Word')->find('6');
+        $wishlist->addWord($word);
+        $word = $manager->getRepository('AppBundle:Word\Word')->find('7');
+        $wishlist->addWord($word);
+        $manager->persist($wishlist);
+        $manager->flush();
     }
 
     public function getOrder()

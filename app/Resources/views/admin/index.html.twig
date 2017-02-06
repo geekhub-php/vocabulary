@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+{% block header %}
+<head>
+<title>Welcome to my site friend</title>
+ <link rel="stylesheet" href="{{asset('css/app.css')}}">
+ <script src="{{asset('js/jquery-3.1.1.min.js')}}"></script>
+ <script src="{{asset('js/bootstrap.min.js')}}"></script>
+
+</head>
+{% endblock%}
+{% block body %}
+ <body>
+ <h1><a href="{{ path('logout')}}">{{ 'main.navig.home' | trans }}</a><br></h1>
+ {{ form_start(edit_form) }}
+ {{ form_widget(edit_form) }}
+
+ <button type="submit">Edit</button>
+ {{ form_end(edit_form) }}
+
+ </body>
+{% endblock%}
+{% block footer %}
+{% endblock%}
+</html>

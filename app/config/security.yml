@@ -6,16 +6,23 @@ security:
         our_db_provider:
             entity:
                 class: AppBundle\Entity\User\User
-                property: login
+                property: username
 
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+            anonymous: ~
 
         default:
-            anonymous: ~
-            http_basic: ~
+            anonymous: true
+            security: true
+            form_login:
+                login_path: login
+                check_path: login
+            logout:
+                path:   /logout
+                target: /
 
     access_control:
         # require ROLE_ADMIN for /admin*

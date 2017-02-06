@@ -1,0 +1,53 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: nima
+ * Date: 04.02.17
+ * Time: 11:43
+ */
+
+namespace AppBundle\Controller\Wishlist;
+
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use AppBundle\Entity\Word\Word;
+use AppBundle\Entity\Wishlist\Wishlist;
+use AppBundle\Form\WishlistType;
+
+class WishlistController extends Controller
+{
+    /**
+     * @Route("/admin/{id}", requirements={"id" = "\d+"}, defaults={"id" =1}, name="admin" )
+     * @Method({"GET", "POST"})
+     */
+
+    public function editWishlistAction(Request $request, Wishlist $wishlist, $id)
+    {
+       /* $wishlist = $this->getDoctrine()
+            ->getRepository('AppBundle:Wishlist\Wishlist')
+            ->find($id);
+       */
+        $editForm = $this->createForm(WishlistType::class, $wishlist, [
+            'em' => $this->getDoctrine()->getManager(),
+        ]);
+
+        $editForm->handleRequest($request);
+        if ($editForm->isValid()) {
+            //$post->setDataEdit(new \DateTime("now"));
+            $this->getDoctrine()->getManager()->flush();
+
+
+            return $this->redirectToRoute('contact');
+        }
+
+          return $this->render('admin/index.html.twig', array(
+            'wishlist' => $wishlist,
+            // 'id' =>$id,
+            'edit_form' => $editForm->createView(),
+
+        ));
+    }
+}

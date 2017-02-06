@@ -1,4 +1,4 @@
-contact:
+homepage:
     path:     /{_locale}
     defaults: { _controller: AppBundle:Default:index, _locale: en }
     requirements:
@@ -9,6 +9,22 @@ information:
     defaults: { _controller: AppBundle:Default:information, _locale: en }
     requirements:
         _locale: en|fr|uk
-#app:
- #   resource: "@AppBundle/Controller/"
-  #  type:     annotation
+
+login:
+    path:     /{_locale}/login
+    defaults: { _controller: AppBundle:Default:login, _locale: en }
+    requirements:
+        _locale: en|fr|uk
+
+logout:
+    path: /logout
+
+#admin:
+#    path:     /{_locale}/admin
+#    defaults: { _controller: AppBundle:Wishlist:editWishlist, _locale: en }
+#    requirements:
+#        _locale: en|fr|uk
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation

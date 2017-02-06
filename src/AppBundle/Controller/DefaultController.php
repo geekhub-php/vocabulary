@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,7 +22,7 @@ class DefaultController extends Controller
         $em=$this->getDoctrine()->getManager();
         $word = $em->getRepository('AppBundle:Word\Word')->findOneById(5);
         //$word->translate('en')->getName();
-         dump($word->translate('EN')->getName());
+        // dump($word->translate('EN')->getName());
         return $this->render('index.html.twig', array('data' => $word->translate('EN')->getName()));
     }
 
@@ -43,4 +44,24 @@ class DefaultController extends Controller
 
         return $this->render('index.html.twig', array('data' => "data"));
     }
+
+
+
+    public function loginAction(Request $request)
+    {
+        $authenticationUtils = $this->get('security.authentication_utils');
+
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
+
+        // last username entered by the user
+        $lastUsername = $authenticationUtils->getLastUsername();
+        dump($lastUsername);
+        return $this->render('login.html.twig', array(
+            'last_username' =>$lastUsername, //$lastUsername,
+            'error'         => $error,
+        ));
+    }
+
+
 }

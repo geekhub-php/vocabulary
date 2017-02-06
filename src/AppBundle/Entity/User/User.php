@@ -26,9 +26,9 @@ class User implements UserInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="login", type="string", length=100, unique=true)
+     * @ORM\Column(name="user_name", type="string", length=100, unique=true)
      */
-    private $login;
+    private $username;
 
     /**
      * @var string
@@ -69,9 +69,9 @@ class User implements UserInterface
      *
      * @return User
      */
-    public function setLogin($login)
+    public function setUsername($username)
     {
-        $this->login = $login;
+        $this->username = $username;
 
         return $this;
     }
@@ -81,9 +81,9 @@ class User implements UserInterface
      *
      * @return string
      */
-    public function getLogin()
+    public function getUsername()
     {
-        return $this->login;
+        return $this->username;
     }
 
     /**
@@ -164,16 +164,13 @@ class User implements UserInterface
 
 
 
-    public function getUsername()
-    {
-        return $this->login;
-    }
 
-    public function set($login)
-    {
-        $this->login = $login;
 
-        return $this;
+    public function set($username)
+    {
+        $this->username = $username;
+
+        return $username;
     }
 
     public function getRoles()
@@ -192,6 +189,7 @@ class User implements UserInterface
     public function eraseCredentials()
     {
     }
+
 
 
 }

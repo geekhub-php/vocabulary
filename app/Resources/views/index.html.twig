@@ -32,10 +32,10 @@
   <div class="col-sm-1"></div>
   <div class="col-sm-6">
       <ul class="nav nav-tabs">
-          <li class="active"><a href="#">{{ 'main.navig.home' | trans }}</a></li>
+          <li class="active"><a href="{{ path('homepage')}}">{{ 'main.navig.home' | trans }}</a></li>
           <li><a href="{{ path('information')}}">{{ 'main.navig.information' | trans }}</a></li>
-          <li><a href="#">{{ 'main.navig.login' | trans }}</a></li>
-
+          <li><a href="{{ path('login')}}">{{ 'main.navig.login' | trans }}</a></li>
+          <li><a href="{{ path('admin')}}">seting</a></li>
 
       </ul>
   </div>
