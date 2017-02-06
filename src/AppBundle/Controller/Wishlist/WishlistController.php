@@ -30,9 +30,10 @@ class WishlistController extends Controller
             ->getRepository('AppBundle:Wishlist\Wishlist')
             ->find($id);
        */
-        $editForm = $this->createForm(WishlistType::class, $wishlist, [
-            'em' => $this->getDoctrine()->getManager(),
-        ]);
+        $editForm = $this->createForm(WishlistType::class, $wishlist,
+            array('locale' =>$request->getLocale())
+           // ['em' => $this->getDoctrine()->getManager(),]
+            );
 
         $editForm->handleRequest($request);
         if ($editForm->isValid()) {
@@ -40,7 +41,7 @@ class WishlistController extends Controller
             $this->getDoctrine()->getManager()->flush();
 
 
-            return $this->redirectToRoute('contact');
+            return $this->redirectToRoute('admin');
         }
 
           return $this->render('admin/index.html.twig', array(

@@ -23,11 +23,14 @@ class DefaultController extends Controller
         $word = $em->getRepository('AppBundle:Word\Word')->findOneById(5);
         //$word->translate('en')->getName();
         // dump($word->translate('EN')->getName());
-        dump($request->getLocale());
+        //dump($request->getLocale());
         return $this->render('index.html.twig', array('data' => $word->translate('EN')->getName()));
     }
 
-
+    /**
+     * @Route("/{_locale}/information", requirements={"_locale" = "en|uk|bel"}, defaults={"_locale" = "en"}, name="information" )
+     * @Method({"GET", "POST"})
+     */
     public function informationAction(Request $request)
     {
 
@@ -46,7 +49,10 @@ class DefaultController extends Controller
         return $this->render('index.html.twig', array('data' => "data"));
     }
 
-
+    /**
+     * @Route("{_locale}/login", requirements={"_locale" = "en|uk|bel"}, defaults={"_locale" = "en"}, name="login" )
+     * @Method({"GET", "POST"})
+     */
 
     public function loginAction(Request $request)
     {
@@ -57,7 +63,7 @@ class DefaultController extends Controller
 
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
-        dump($lastUsername);
+        //dump($lastUsername);
         return $this->render('login.html.twig', array(
             'last_username' =>$lastUsername, //$lastUsername,
             'error'         => $error,

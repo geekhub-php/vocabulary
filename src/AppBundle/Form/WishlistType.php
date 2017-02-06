@@ -9,6 +9,7 @@
 namespace AppBundle\Form;
 
 
+use Symfony\Component\BrowserKit\Request;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -24,20 +25,26 @@ use Doctrine\ORM\EntityRepository;
 
 class WishlistType extends AbstractType
 {
+
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+       $locale= $this->locale = $options['locale'];
+
+
 
         $builder
-            ->add('words', EntityType::class, array(
-                'class' => 'AppBundle:Word\Word',
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('w');
-                           },
-                'choice_label' => 'translations[UK].getName',
-                'multiple' => true,
-                'expanded' => true,
-            ))
-        ;
+            -> add('words', EntityType::class, array(
+                    'class' => 'AppBundle:Word\Word',
+                    'query_builder' => function (EntityRepository $er) {
+                        return $er->createQueryBuilder('w');
+                    },
+                //'choice_label' => 'translations[en].getName',
+                    'choice_label' => 'translations['.$locale.'].getName',
+                    'multiple' => true,
+                    'expanded' => true,
+                ));
+
     }
 
     /**
@@ -47,9 +54,10 @@ class WishlistType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\Wishlist\Wishlist',
-            'em' => null,
+            'locale'=>null,
+            //'em' => null,
         ));
-        $resolver->addAllowedTypes('em', [ObjectManager::class]);
+        //$resolver->addAllowedTypes('em', [ObjectManager::class]);
     }
 
     /**
