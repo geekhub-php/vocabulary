@@ -44,11 +44,10 @@
              <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Выпадающий список
              </button>
              <ul class="dropdown-menu">
-                 <li><a href="#"{#"{{  path('\') }}"#}>BEl</a></li>
-                 <li><a href="#">UK</a></li>
-                 <li><a href="#">ENG</a></li>
-                 <li><a href="#">RUM</a></li>
-                 <li><a href="#">RUS</a></li>
+                 <li><a href="{{ path('homepage', {'_locale': 'bel'}) }}">BEl</a></li>
+                 <li><a href="{{ path('homepage', {'_locale': 'uk'}) }}">UK</a></li>
+                 <li><a href="{{ path('homepage', {'_locale': 'en'}) }}">ENG</a></li>
+
              </ul>
          </div>
 

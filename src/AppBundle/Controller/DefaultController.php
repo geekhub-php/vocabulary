@@ -23,6 +23,7 @@ class DefaultController extends Controller
         $word = $em->getRepository('AppBundle:Word\Word')->findOneById(5);
         //$word->translate('en')->getName();
         // dump($word->translate('EN')->getName());
+        dump($request->getLocale());
         return $this->render('index.html.twig', array('data' => $word->translate('EN')->getName()));
     }
 
@@ -62,6 +63,5 @@ class DefaultController extends Controller
             'error'         => $error,
         ));
     }
-
 
 }

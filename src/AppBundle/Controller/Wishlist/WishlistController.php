@@ -20,7 +20,7 @@ use AppBundle\Form\WishlistType;
 class WishlistController extends Controller
 {
     /**
-     * @Route("/admin/{id}", requirements={"id" = "\d+"}, defaults={"id" =1}, name="admin" )
+     * @Route("{_locale}/admin/{id}", requirements={"id" = "\d+",  "_locale" = "en|uk|bel"}, defaults={"id" =1, "_locale" = "en"}, name="admin" )
      * @Method({"GET", "POST"})
      */
 

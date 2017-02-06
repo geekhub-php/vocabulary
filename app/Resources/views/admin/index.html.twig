@@ -1,3 +1,5 @@
+{% if is_granted('ROLE_USER') %}
+
 <!DOCTYPE html>
 <html>
 {% block header %}
@@ -23,3 +25,9 @@
 {% block footer %}
 {% endblock%}
 </html>
+
+{% else %}
+ {{ render(controller('AppBundle:Default:login'))}}
+
+
+{% endif %}
