@@ -38,10 +38,30 @@ AppBundle\Entity\Word:
         dateUpdated: '<dateTimeBetween("now", "+3 days")>'
 
 AppBundle\Entity\WordTranslation:
-    wTranslation{1..150}:
-        translatable: '@word*'
+    wTranslation{1..29}:
+        translatable: '@word<current()>'
         word: '<word()>'
-        locale: '<randomElement(["en", "uk", "ru", "fr", "es"])>'
+        locale: 'en'
+    wTranslation30en:
+        translatable: '@word30'
+        word: 'word'
+        locale: 'en'
+    wTranslation30uk:
+        translatable: '@word30'
+        word: 'слово'
+        locale: 'uk'
+    wTranslation30ru:
+        translatable: '@word30'
+        word: 'слово'
+        locale: 'ru'
+    wTranslation30fr:
+        translatable: '@word30'
+        word: 'mot'
+        locale: 'fr'
+    wTranslation30es:
+        translatable: '@word30'
+        word: 'palabra'
+        locale: 'es'
 
 AppBundle\Entity\Wishlist:
     wishlist1:
