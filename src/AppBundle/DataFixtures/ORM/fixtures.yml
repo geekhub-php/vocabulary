@@ -1,7 +1,6 @@
 AppBundle\Entity\User:
     userAdminDefault1:
         userProfile (unique): '@uProfile1'
-        #wishlist (unique): '@wishlist1'
         username (unique): admin
         password: admin
         email: admin@example.com
@@ -10,7 +9,6 @@ AppBundle\Entity\User:
         dateUpdated: '<dateTimeBetween("now", "+3 days")>'
     userDefault2:
         userProfile (unique): '@uProfile2'
-        #wishlist (unique): '@wishlist2'
         username (unique): user
         password: user
         email: user@example.com
@@ -19,7 +17,6 @@ AppBundle\Entity\User:
         dateUpdated: '<dateTimeBetween("now", "+3 days")>'
     user{3..12}:
         userProfile (unique): '@uProfile<current()>'
-        #wishlist (unique): '@wishlist<current()>'
         username (unique): '<username()>'
         password: '<password()>'
         email (unique): '<email()>'
@@ -37,9 +34,14 @@ AppBundle\Entity\UserProfile:
 AppBundle\Entity\Word:
     word{1..30}:
         user: '@user*'
-        word: '<word()>'
         dateCreated: '<dateTimeBetween("-10 days", "now")>'
         dateUpdated: '<dateTimeBetween("now", "+3 days")>'
+
+AppBundle\Entity\WordTranslation:
+    wTranslation{1..150}:
+        translatable: '@word*'
+        word: '<word()>'
+        locale: '<randomElement(["en", "uk", "ru", "fr", "es"])>'
 
 AppBundle\Entity\Wishlist:
     wishlist1:

@@ -16,7 +16,11 @@
                         <table class="table table-striped">
                             <thead>
                             <tr>
-                                <th>{{ 'word.titleOne'|trans }}</th>
+                                <th>{{ 'word.titleOne'|trans }} (en)</th>
+                                <th>{{ 'word.titleOne'|trans }} (uk)</th>
+                                <th>{{ 'word.titleOne'|trans }} (ru)</th>
+                                <th>{{ 'word.titleOne'|trans }} (fr)</th>
+                                <th>{{ 'word.titleOne'|trans }} (es)</th>
                                 <th>{{ 'base.author'|trans }}</th>
                                 <th>{{ 'base.created'|trans }}</th>
                                 <th>{{ 'base.updated'|trans }}</th>
@@ -28,7 +32,11 @@
                             <tbody>
                             {% for word in pagination %}
                                 <tr>
-                                    <td>{{ word.word }}</td>
+                                    <td>{{ word.translate('en').word }}</td>
+                                    <td>{{ word.translate('uk').word }}</td>
+                                    <td>{{ word.translate('ru').word }}</td>
+                                    <td>{{ word.translate('fr').word }}</td>
+                                    <td>{{ word.translate('es').word }}</td>
                                     <td>{{ word.user.userProfile.firstName }} {{ word.user.userProfile.lastName }}</td>
                                     <td>{{ word.dateCreated|date("d.m.Y") }}</td>
                                     <td>{{ word.dateUpdated|date("d.m.Y") }}</td>

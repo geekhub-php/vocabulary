@@ -3,27 +3,29 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
+use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Post
+ * Word
  *
  * @ORM\Table(name="word")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\WordRepository")
  */
 class Word extends BaseSuperClass
 {
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="word", type="string", length=150)
-     *
-     * @Assert\NotBlank()
-     * @Assert\Type("string")
-     * @Assert\Length(min="3", max="150")
-     */
-    private $word;
+    use ORMBehaviors\Translatable\Translatable;
+
+//    /**
+//     * @var string
+//     *
+//     * @ORM\Column(name="word", type="string", length=150)
+//     *
+//     * @Assert\NotBlank()
+//     * @Assert\Type("string")
+//     * @Assert\Length(min="3", max="150")
+//     */
+//    private $word;
 
     /**
      * @var User
@@ -47,29 +49,29 @@ class Word extends BaseSuperClass
         $this->wishlists = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-    /**
-     * Set word
-     *
-     * @param string $word
-     *
-     * @return Word
-     */
-    public function setWord($word)
-    {
-        $this->word = $word;
-
-        return $this;
-    }
-
-    /**
-     * Get word
-     *
-     * @return string
-     */
-    public function getWord()
-    {
-        return $this->word;
-    }
+//    /**
+//     * Set word
+//     *
+//     * @param string $word
+//     *
+//     * @return Word
+//     */
+//    public function setWord($word)
+//    {
+//        $this->word = $word;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Get word
+//     *
+//     * @return string
+//     */
+//    public function getWord()
+//    {
+//        return $this->word;
+//    }
 
     /**
      * Set user

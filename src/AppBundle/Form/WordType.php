@@ -4,12 +4,11 @@ namespace AppBundle\Form;
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
+use A2lix\TranslationFormBundle\Form\Type\TranslationsType;
 
 class WordType extends AbstractType
 {
@@ -25,10 +24,14 @@ class WordType extends AbstractType
     {
         $this->authorizationChecker = $options['authorizationChecker'];
 
-        $builder
-            ->add('word', TextType::class, array(
-                'label' => 'word.titleOne'
-            ));
+        $builder->add('translations', TranslationsType::class, array(
+            'label' => false,
+            'fields' => array(
+                'word' => array(
+                    'label' => 'word.titleOne'
+                )
+            )
+        ));
 
         if (isset($this->authorizationChecker) && $this->authorizationChecker->isGranted('ROLE_ADMIN')) {
             $builder->add('user', EntityType::class, array(
