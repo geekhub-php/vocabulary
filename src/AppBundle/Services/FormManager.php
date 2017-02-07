@@ -11,7 +11,9 @@ namespace AppBundle\Services;
 
 use AppBundle\Entity\User;
 use AppBundle\Entity\Wishlist;
+use AppBundle\Entity\Word;
 use AppBundle\Form\UserType;
+use AppBundle\Form\WordType;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -59,4 +61,52 @@ class FormManager
 
         return $form;
     }
+
+    public function createWordForm(Request $request)
+    {
+        $form = $this->formFactory->create(WordType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->doctrine->getManager();
+            $engWord = new Word();
+            $ruWord = new Word();
+            $uaWord = new Word();
+
+            $engLanguage = $em->getRepository('AppBundle:Language')->find(1);
+            $ruLanguage = $em->getRepository('AppBundle:Language')->find(2);
+            $uaLanguage = $em->getRepository('AppBundle:Language')->find(4);
+
+            $engName = $form['word_eng']->getData();
+            $engWord->setName($engName);
+            $engWord->setLanguage($engLanguage);
+            $em->persist($engWord);
+
+            $ruName = $form['word_ru']->getData();
+            $ruWord->setName($ruName);
+            $ruWord->setLanguage($ruLanguage);
+            $em->persist($ruWord);
+
+            $uaName = $form['word_ua']->getData();
+            $uaWord->setName($uaName);
+            $uaWord->setLanguage($uaLanguage);
+            $em->persist($uaWord);
+
+            $engWord->addTranslation($uaWord);
+            $engWord->addTranslation($ruWord);
+
+            $ruWord->addTranslation($engWord);
+            $ruWord->addTranslation($uaWord);
+
+            $uaWord->addTranslation($engWord);
+            $uaWord->addTranslation($ruWord);
+
+            $em->flush();
+
+            return true;
+        }
+
+        return $form;
+    }
+
 }

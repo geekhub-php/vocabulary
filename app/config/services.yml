@@ -10,9 +10,18 @@ services:
   app.form.manager:
         class: AppBundle\Services\FormManager
         arguments: ["@security.password_encoder", "@form.factory", "@doctrine"]
-
   app.user_locale_listener:
           class: AppBundle\EventListener\UserLocaleListener
           arguments: ['@session']
           tags:
               - { name: kernel.event_listener, event: security.interactive_login, method: onInteractiveLogin }
+  app.locale_listener:
+          class: AppBundle\EventListener\LocaleListener
+          arguments: ['%kernel.default_locale%']
+          tags:
+              - { name: kernel.event_subscriber }
+  app.twig_extension:
+          class: AppBundle\Twig\ViewExtension
+          public: false
+          tags:
+              - { name: twig.extension }

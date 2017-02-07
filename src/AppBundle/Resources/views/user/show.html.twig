@@ -1,0 +1,55 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block title %}User profile{% endblock %}
+
+ {% block content %}
+     <table class="table table-user-information">
+         <tbody>
+         <tr>
+             <th>Username</th>
+             <td>{{ user.username }}</td>
+         </tr>
+         <tr>
+             <th>Email</th>
+             <td>{{ user.email }}</td>
+         </tr>
+         <tr>
+             <th>Fullname</th>
+             <td>{{ user.fullname}}</td>
+         </tr>
+         </tbody>
+     </table>
+     <table class="table table-striped">
+         <thead>
+         <tr>
+             <th>#</th>
+             <th>{% trans %}template.word.index.word{% endtrans %}</th>
+             <th>{% trans %}template.word.index.language{% endtrans %}</th>
+             {% if app.user %}
+                 <th>{% trans %}template.word.index.action{% endtrans %}</th>
+             {% endif %}
+         </tr>
+         </thead>
+         <tbody>
+         {% for word in user.wishlist.words %}
+             <tr>
+                 <td>{{ loop.index }}</td>
+                 <td>{{ word.name }}</td>
+                 <td>{{ word.language.name }}</td>
+                 {% if app.user %}
+                     <td>
+                         {% if word in user.wishlist.words  %}
+                             <a href="/wishlist/word/{{ word.id }}/delete">Remove from wishlist</a>
+                         {% else  %}
+                             <a href="/wishlist/word/{{ word.id }}/add">Add to wishlist</a>
+                         {% endif %}
+                     </td>
+                 {% endif %}
+             </tr>
+         {% endfor %}
+         </tbody>
+     </table>
+     <div class="col-md-offset-4">
+         {{ knp_pagination_render(words) }}
+     </div>
+ {% endblock %}

@@ -2,28 +2,13 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Category;
-use AppBundle\Entity\Post;
 use AppBundle\Entity\User;
 use AppBundle\Form\LoginForm;
-use AppBundle\Form\Search\SearchUserType;
-use AppBundle\Form\User\Model\ChangePassword;
-use AppBundle\Form\User\UserEditType;
-use AppBundle\Form\UserType;
-use AppBundle\Repository\UserRepository;
-use Doctrine\ORM\EntityRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Form;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Doctrine\Common\Collections\Criteria;
-use Symfony\Component\Validator\Constraints\Length;
-use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Form\Extension\Core\Type\SearchType;
+use Symfony\Component\HttpFoundation\Request;;
 
 class UserController extends Controller
 {
@@ -31,47 +16,30 @@ class UserController extends Controller
     /**
      * Show user list
      *
-     * @Route("/user", name="user_index")
-     * @Template()
+     * @Route("/user/{page}", name="user_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request, $page = 1)
     {
         $user = $this->getUser();
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        return $this->render('AppBundle:User:index.html.twig', [
+        $pagination = $this->get('knp_paginator')->paginate(
+            $user->getWishList()->getWords(),
+            $request->query->getInt('page', $page),
+            5);
+
+        return $this->render('AppBundle:user:show.html.twig', [
             'user' => $user,
             'categories' => null,
-        ]);
-    }
-
-    /**
-     * Show user by id
-     *
-     * @Route("/user/{id}", name="user_show", requirements={"id": "\d+"} )
-     * @Template()
-     * @Method("GET")
-     */
-    public function showAction(Request $request, User $user)
-    {
-        $criteria = Criteria::create()
-            ->orderBy(array("id" => Criteria::DESC))
-            ->setMaxResults(5);
-        $em = $this->getDoctrine()->getManager();
-        $postRepository = $em->getRepository('AppBundle:Post');
-        return $this->render('AppBundle:User:show.html.twig', [
-            'user' => $user,
-            'posts' => $postRepository->findApprovedUserPosts($user),
-            'lastCommentedPosts' => $user->getComments()->matching($criteria),
+            'words' => $pagination
         ]);
     }
 
     /**
      * @param Request $request
      *
-     * @Route("/{_locale}/user/login", name="user_login")
-     * @Route("/user/login")
+     * @Route("/user/login", name="user_login")
      */
     public function loginAction(Request $request)
     {
@@ -105,8 +73,7 @@ class UserController extends Controller
     /**
      * Registering a new user
      *
-     * @Route("/{_locale}/user/registration", name="user_registration")
-     * @Route("/user/registration")
+     * @Route("/user/registration", name="user_registration")
      * @Method({"GET", "POST"})
      */
     public function registerAction(Request $request)
@@ -129,7 +96,7 @@ class UserController extends Controller
                     $this->get('app.security.login_form_authenticator'),
                     'main');
             $request->getSession()->set('_locale', $user->getLanguage());
-            return $this->redirectToRoute('user_index');
+            return $this->redirectToRoute('user_show');
         }
 
     }

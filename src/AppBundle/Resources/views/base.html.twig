@@ -29,17 +29,24 @@
                                     <!-- Collect the nav links, forms, and other content for toggling -->
                                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                         <ul class="nav navbar-nav">
-                                            <li class="active"><a href="#">{% trans %}template.navbar.home{% endtrans %} <span class="sr-only">(current)</span></a></li>
-                                            <li><a href="#">{% trans %}template.navbar.add_word{% endtrans %}</a></li>
+                                            <li class="active"><a href="/">{% trans %}template.navbar.home{% endtrans %} <span class="sr-only">(current)</span></a></li>
+                                            <li><a href="/word/new">{% trans %}template.navbar.add_word{% endtrans %}</a></li>
                                         </ul>
                                         <ul class="nav navbar-nav navbar-right">
-                                            <li><a href="#">{% trans %}template.navbar.login{% endtrans %}</a></li>
-                                            <li><a href="#">{% trans %}template.navbar.register{% endtrans %}</a></li>
-                                            <li><a href="#">{% trans %}template.navbar.profile{% endtrans %}</a></li>
+                                            {% if not app.user %}
+                                            <li><a href="/user/login">{% trans %}template.navbar.login{% endtrans %}</a></li>
+                                            <li><a href="/user/register">{% trans %}template.navbar.register{% endtrans %}</a></li>
+                                            {% else %}
+                                            <li><a href="/user">{% trans %}template.navbar.profile{% endtrans %}</a></li>
+                                            <li><a href="/user/logout">{% trans %}template.navbar.logout{% endtrans %}</a></li>
+                                            {% endif %}
                                         </ul>
                                     </div><!-- /.navbar-collapse -->
                                 </div><!-- /.container-fluid -->
                             </nav>
+                        {% endblock %}
+                        {% block slider %}
+                            {% include 'AppBundle::slider.html.twig' %}
                         {% endblock %}
                         {% block content %}
                         {% endblock %}

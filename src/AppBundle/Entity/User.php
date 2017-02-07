@@ -92,7 +92,7 @@ class User implements UserInterface, \Serializable
     /**
      * @var string
      *
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Language")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Language")
      */
     private $language;
 

@@ -2,10 +2,13 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\User;
+use AppBundle\Entity\Wishlist;
 use AppBundle\Entity\Word;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -17,48 +20,50 @@ class WordController extends Controller
     /**
      * Lists all word entities.
      *
-     * @Route("/{_locale}/{page}", name="homepage", requirements={"page": "\d+"})
-     * @Route("/{page}", requirements={"page": "\d+"})
+     * @Route("/{page}", name="homepage", requirements={"page": "\d+"})
      * @Method("GET")
      */
     public function indexAction(Request $request, $page = 1)
     {
         $em = $this->getDoctrine()->getManager();
 
-       // $words = $em->getRepository('AppBundle:Word')->findAll();
+        $user = $this->get('security.token_storage')->getToken()->getUser();
 
-       // $pagination = $this->get('knp_paginator')->paginate($words,
-          //  $request->query->getInt('page', 1),
-            //5);
+        if ($user instanceof User) {
+            $wishlist = $user->getWishlist();
+        }
+        else {
+            $wishlist = null;
+        }
+        $words = $em->getRepository('AppBundle:Word')->findAll();
+
+        $pagination = $this->get('knp_paginator')->paginate($words,
+            $request->query->getInt('page', $page),
+            5);
+        /**@var Wishlist $wishlist*/
         return $this->render('AppBundle:word:index.html.twig', array(
-            'words' => null,
+            'words' => $pagination,
+            'wishlist' => $wishlist,
         ));
     }
 
     /**
      * Creates a new word entity.
      *
-     * @Route("/new", name="word_new")
+     * @Route("/word/new", name="word_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
-        $word = new Word();
-        $form = $this->createForm('AppBundle\Form\WordType', $word);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($word);
-            $em->flush($word);
-
-            return $this->redirectToRoute('word_show', array('id' => $word->getId()));
+        $form = $this->get('app.form.manager')->createWordForm($request);
+        if ($form instanceOf Form) {
+            return $this->render('AppBundle:word:new.html.twig', array(
+                'form' => $form->createView(),
+            ));
         }
-
-        return $this->render('word/new.html.twig', array(
-            'word' => $word,
-            'form' => $form->createView(),
-        ));
+        else {
+            return $this->redirectToRoute('homepage');
+        }
     }
 
     /**

@@ -13,6 +13,13 @@ user:
                 language: Choose your language
                 fullname: Fullname
                 email: Email
+word:
+    form:
+        new:
+            label:
+                en: Enter a english word
+                ru: Enter a russian word
+                ua: Enter a ukrainian word
 
 template:
     navbar:
@@ -21,6 +28,7 @@ template:
         login: Login
         register: Register
         profile: Profile
+        logout: Logout
     word:
         index:
             word: Word

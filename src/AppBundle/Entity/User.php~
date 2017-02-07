@@ -2,8 +2,9 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -11,6 +12,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
  *
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
+ * @UniqueEntity(fields={"username"})
+ * @UniqueEntity(fields={"email"})
  */
 class User implements UserInterface, \Serializable
 {
@@ -20,6 +23,7 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     *
      */
     private $id;
 
@@ -27,6 +31,8 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="username", type="string", length=100, unique=true)
+     * @Assert\NotBlank(message="user.form.registration.error.not_blank.username")
+     * @Assert\Length(min=3, minMessage="user.form.registration.error.length.username")
      */
     private $username;
 
@@ -34,10 +40,19 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
+     * @Assert\Email()
+     * @Assert\NotBlank(message="user.form.registration.error.not_blank.email")
      */
     private $email;
 
 
+    /**
+     * @Assert\NotBlank(message="user.form.registration.error.not_blank.password")
+     * @Assert\Length(
+     *     min = 6,
+     *     max=4096,
+     *     minMessage="user.form.registration.error.length.password")
+     */
     private $plainPassword;
 
     /**
@@ -51,6 +66,7 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="fullname", type="string", length=255)
+     * @Assert\NotBlank(message="user.form.registration.error.not_blank.fullname")
      */
     private $fullname;
 
@@ -76,7 +92,7 @@ class User implements UserInterface, \Serializable
     /**
      * @var string
      *
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Language")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Language")
      */
     private $language;
 

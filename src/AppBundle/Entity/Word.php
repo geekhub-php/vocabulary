@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -24,9 +25,23 @@ class Word
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Word", mappedBy="name")
      */
     private $name;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Language")
+     */
+    private $language;
+
+    /**
+     * @var
+     *
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Word")
+     */
+    private $translations;
 
     /**
      * Get id
@@ -84,5 +99,46 @@ class Word
     public function getLanguage()
     {
         return $this->language;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->translations = new ArrayCollection();
+    }
+
+    /**
+     * Add translation
+     *
+     * @param \AppBundle\Entity\Word $translation
+     *
+     * @return Word
+     */
+    public function addTranslation(\AppBundle\Entity\Word $translation)
+    {
+        $this->translations[] = $translation;
+
+        return $this;
+    }
+
+    /**
+     * Remove translation
+     *
+     * @param \AppBundle\Entity\Word $translation
+     */
+    public function removeTranslation(\AppBundle\Entity\Word $translation)
+    {
+        $this->translations->removeElement($translation);
+    }
+
+    /**
+     * Get translations
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTranslations()
+    {
+        return $this->translations;
     }
 }

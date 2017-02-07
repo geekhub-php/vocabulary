@@ -19,6 +19,7 @@ template:
         login: Войти
         register: Регистрация
         profile: Профиль
+        logout: Выйти
     word:
         index:
             word: Слово

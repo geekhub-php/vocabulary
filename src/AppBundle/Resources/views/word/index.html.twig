@@ -6,16 +6,31 @@
                 <th>#</th>
                 <th>{% trans %}template.word.index.word{% endtrans %}</th>
                 <th>{% trans %}template.word.index.language{% endtrans %}</th>
+                {% if app.user %}
                 <th>{% trans %}template.word.index.action{% endtrans %}</th>
+                {% endif %}
             </tr>
         </thead>
         <tbody>
+            {% for word in words %}
             <tr>
-                <td>1</td>
-                <td>Ble</td>
-                <td>Ru</td>
-                <td>Add</td>
+                <td>{{ loop.index }}</td>
+                <td>{{ word.name }}</td>
+                <td>{{ word.language.name }}</td>
+                {% if app.user %}
+                <td>
+                    {% if word in wishlist.words  %}
+                        <a href="/wishlist/word/{{ word.id }}/delete">Remove from wishlist</a>
+                    {% else  %}
+                        <a href="/wishlist/word/{{ word.id }}/add">Add to wishlist</a>
+                    {% endif %}
+                </td>
+                {% endif %}
             </tr>
+            {% endfor %}
         </tbody>
     </table>
+    <div class="col-md-offset-4">
+        {{ knp_pagination_render(words) }}
+    </div>
 {% endblock %}

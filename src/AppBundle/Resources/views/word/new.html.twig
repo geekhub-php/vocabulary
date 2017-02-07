@@ -1,0 +1,10 @@
+{% extends 'AppBundle::base.html.twig' %}
+{% block content %}
+    {% form_theme form 'AppBundle::form.html.twig' %}
+    {{ form_start(form) }}
+    {{ form_row(form.word_eng) }}
+    {{ form_row(form.word_ru) }}
+    {{ form_row(form.word_ua) }}
+    <button class="btn btn-default" type="submit">Submit</button>
+    {{ form_end(form) }}
+{% endblock %}
