@@ -38,9 +38,10 @@ class UserController extends Controller
             $user->setRoles(array('ROLE_USER'));
 
             $wishlist = new Wishlist();
-            $user->setWishlist($wishlist);
+            $wishlist->setUser($user);
 
             $em = $this->getDoctrine()->getManager();
+            $em->persist($wishlist);
             $em->persist($user);
             $em->flush();
 

@@ -16,8 +16,9 @@ class UserProfile extends BaseSuperClass
     /**
      * @var string
      *
-     * @ORM\Column(name="first_name", type="string", length=45, nullable=true)
+     * @ORM\Column(name="first_name", type="string", length=45)
      *
+     * @Assert\NotBlank()
      * @Assert\Length(max="45")
      */
     private $firstName;
@@ -25,8 +26,9 @@ class UserProfile extends BaseSuperClass
     /**
      * @var string
      *
-     * @ORM\Column(name="last_name", type="string", length=45, nullable=true)
+     * @ORM\Column(name="last_name", type="string", length=45)
      *
+     * @Assert\NotBlank()
      * @Assert\Length(max="45")
      */
     private $lastName;

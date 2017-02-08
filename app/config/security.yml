@@ -35,8 +35,8 @@ security:
                 login_path: login
                 check_path: login
             logout:
-                path:   /logout
-                target: /login
+                path:   logout
+                target: login
             provider: app_db_provider
 
     role_hierarchy:
