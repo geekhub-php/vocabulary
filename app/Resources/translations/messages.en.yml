@@ -1,0 +1,26 @@
+site:
+    login:
+      title: Please Log In
+      username: Username
+      password: Password
+      login: login
+      registration: Register
+    new_word:
+      english: English
+      ukrainian: Ukrainian
+      russian: Russian
+      german: German
+      italian: Italian
+      save: Save
+
+    homepage:
+      list: List of words
+      locale: change lang
+    title: Vocabulary!
+    learning:
+      title: Take a look.. words!
+    nav:
+        login: Login
+        logout: Logout
+        new_word: Add new word
+        learn: Start learning 5 lang's same time.. crazy humanoid

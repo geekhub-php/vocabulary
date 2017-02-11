@@ -4,14 +4,15 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User
  *
- * @ORM\Table(name="user")
+ * @ORM\Table(name="User")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  */
-class User
+class User implements UserInterface, \Serializable
 {
     /**
      * @var int
@@ -20,27 +21,32 @@ class User
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="username", type="string", length=255, unique=true)
      */
-    private $username;
+    protected $username;
 
     /**
      * @var string
      *
      * @ORM\Column(name="password", type="string", length=255)
      */
-    private $password;
+    protected $password;
 
     /**
      * @var ArrayCollection|$words[]
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Word", inversedBy="users")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Word")
      */
-    private $words;
+    protected $words;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $locale = 'en';
 
 
     /**
@@ -110,27 +116,94 @@ class User
         return $this->password;
     }
 
-    /**
-     * Set words
-     *
-     * @param string $words
-     *
-     * @return User
-     */
-    public function setWords($words)
+    public function serialize()
     {
-        $this->words = $words;
+        return serialize(array(
+            $this->id,
+            $this->username,
+            $this->password,
+        ));
+    }
 
-        return $this;
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->username,
+            $this->password,
+            ) = unserialize($serialized);
+    }
+
+    public function getRoles()
+    {
+        return ['ROLE_USER'];
+    }
+
+    public function getSalt()
+    {
+        // TODO: Implement getSalt() method.
+    }
+
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
     }
 
     /**
-     * Get words
-     *
-     * @return string
+     * @return ArrayCollection
      */
     public function getWords()
     {
         return $this->words;
     }
+
+    /**
+     * @param ArrayCollection $words
+     */
+    public function setWords($words)
+    {
+        $this->words = $words;
+    }
+
+
+    /**
+     * Add word.
+     *
+     * @param \AppBundle\Entity\Word $word
+     *
+     * @return User
+     */
+    public function addWord(Word $word)
+    {
+        $this->words[] = $word;
+
+        return $this;
+    }
+
+    /**
+     * Remove word.
+     *
+     * @param \AppBundle\Entity\Word $word
+     */
+    public function removeWord(Word $word)
+    {
+        $this->words->removeElement($word);
+    }
+
+    /**
+     * @return string
+     */
+    public function getLocale()
+    {
+        return $this->locale;
+    }
+
+    /**
+     * @param string $locale
+     */
+    public function setLocale($locale)
+    {
+        $this->locale = $locale;
+    }
+
 }

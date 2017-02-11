@@ -1,8 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
+
     {{ form_start(form) }}
     {{ form_widget(form) }}
-    <button type="submit" class="btn btn-success">Save</button>
+    <button type="submit">{{ 'site.new_word.save'|trans }}</button>
     {{ form_end(form) }}
-{% endblock %}
+
+{% endblock main %}

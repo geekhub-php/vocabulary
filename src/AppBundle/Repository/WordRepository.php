@@ -10,4 +10,8 @@ namespace AppBundle\Repository;
  */
 class WordRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findRandom()
+    {
+
+    }
 }

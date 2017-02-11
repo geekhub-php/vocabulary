@@ -1,0 +1,4 @@
+AppBundle\Entity\User:
+  User{1..10}:
+         username: <username()>
+         password: Qwer1234

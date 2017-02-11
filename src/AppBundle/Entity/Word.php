@@ -3,16 +3,17 @@
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
- * Word
- *
- * @ORM\Table(name="word")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\WordRepository")
+ * @ORM\Entity
  */
 class Word
 {
+    use ORMBehaviors\Translatable\Translatable;
+
     /**
      * @var int
      *
@@ -20,73 +21,21 @@ class Word
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=255, unique=true)
-     *
+     * @var ArrayCollection|$words[]
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User")
      */
-    private $text;
+    protected $users;
 
-    /**
-     * @var ArrayCollection
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Translate", inversedBy="word", cascade={"persist", "remove"})
-     */
-    private $translate;
-
-
-    /**
-     * @var ArrayCollection
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User", mappedBy="words")
-     */
-    private $users;
 
     public function __construct()
     {
         $this->users = new ArrayCollection();
-        $this->translate = new ArrayCollection();
     }
 
     /**
-     * @return mixed
-     */
-    public function getUsers()
-    {
-        return $this->users;
-    }
-
-
-    /**
-     * @return mixed
-     */
-    public function getTranslate()
-    {
-        return $this->translate;
-    }
-
-    /**
-     * @param mixed $translate
-     */
-    public function setTranslate($translate)
-    {
-        $this->translate = $translate;
-    }
-
-
-    /**
-     * @param mixed $users
-     */
-    public function setUsers($users)
-    {
-        $this->users = $users;
-    }
-
-
-    /**
-     * Get id
-     *
      * @return int
      */
     public function getId()
@@ -94,27 +43,29 @@ class Word
         return $this->id;
     }
 
+
     /**
-     * Set text
+     * Add user.
      *
-     * @param string $text
+     * @param \AppBundle\Entity\User $user
      *
      * @return Word
      */
-    public function setText($text)
+    public function addUser(User $user)
     {
-        $this->text = $text;
+        $this->users[] = $user;
 
         return $this;
     }
 
     /**
-     * Get text
+     * Remove user.
      *
-     * @return string
+     * @param \AppBundle\Entity\User $user
      */
-    public function getText()
+    public function removeUser(User $user)
     {
-        return $this->text;
+        $this->users->removeElement($user);
     }
+
 }

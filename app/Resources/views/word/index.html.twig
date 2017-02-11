@@ -1,9 +1,30 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
-
-    {% for word in words %}
-        {{ word.text }}
-        {{ word.translate.ukrainian }}
-    {% endfor %}
+    <h1>{{ 'site.homepage.list'|trans }}</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>{{ 'site.new_word.english'|trans }}</th>
+            <th>{{ 'site.new_word.ukrainian'|trans }}</th>
+            <th>{{ 'site.new_word.russian'|trans }}</th>
+            <th>{{ 'site.new_word.german'|trans }}</th>
+            <th>{{ 'site.new_word.italian'|trans }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for word in words %}
+            {% if word not in users_words %}
+        <tr>
+            <td>{{ word.translate('en').getName }}</td>
+            <td>{{ word.translate('uk').getName }}</td>
+            <td>{{ word.translate('ru').getName }}</td>
+            <td>{{ word.translate('de').getName }}</td>
+            <td>{{ word.translate('it').getName }}</td>
+            <td><a href="{{ path('add_favorite', {'id': word.id}) }}"><span class="glyphicon glyphicon-plus"></span></a></td>
+        </tr>
+            {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
