@@ -1,11 +1,12 @@
 <?php
+
 namespace AppBundle\Services;
+
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\Common\EventSubscriber;
 use AppBundle\Entity\User;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
-
 
 class DoctrineListener implements EventSubscriber
 {

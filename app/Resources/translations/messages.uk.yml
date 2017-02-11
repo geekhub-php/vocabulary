@@ -2,8 +2,8 @@ site:
     login:
       title: Будь ласка залогіньтесь
       username: Ім'я користувача
-      password: Password
-      login: Пароль
+      password: Пароль
+      login: Логін
       registration: Реєстрація
     new_word:
       english: Англійська

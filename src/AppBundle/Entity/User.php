@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * User
+ * User.
  *
  * @ORM\Table(name="User")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
@@ -48,7 +48,6 @@ class User implements UserInterface, \Serializable
      */
     protected $locale = 'en';
 
-
     /**
      * Constructor.
      */
@@ -57,9 +56,8 @@ class User implements UserInterface, \Serializable
         $this->words = new ArrayCollection();
     }
 
-
     /**
-     * Get id
+     * Get id.
      *
      * @return int
      */
@@ -69,7 +67,7 @@ class User implements UserInterface, \Serializable
     }
 
     /**
-     * Set username
+     * Set username.
      *
      * @param string $username
      *
@@ -83,7 +81,7 @@ class User implements UserInterface, \Serializable
     }
 
     /**
-     * Get username
+     * Get username.
      *
      * @return string
      */
@@ -93,7 +91,7 @@ class User implements UserInterface, \Serializable
     }
 
     /**
-     * Set password
+     * Set password.
      *
      * @param string $password
      *
@@ -107,7 +105,7 @@ class User implements UserInterface, \Serializable
     }
 
     /**
-     * Get password
+     * Get password.
      *
      * @return string
      */
@@ -127,11 +125,10 @@ class User implements UserInterface, \Serializable
 
     public function unserialize($serialized)
     {
-        list (
+        list(
             $this->id,
             $this->username,
-            $this->password,
-            ) = unserialize($serialized);
+            $this->password) = unserialize($serialized);
     }
 
     public function getRoles()
@@ -164,7 +161,6 @@ class User implements UserInterface, \Serializable
     {
         $this->words = $words;
     }
-
 
     /**
      * Add word.
@@ -205,5 +201,4 @@ class User implements UserInterface, \Serializable
     {
         $this->locale = $locale;
     }
-
 }

@@ -2,10 +2,12 @@
 
 namespace AppBundle\Controller;
 
-
-use AppBundle\Form\LoginType;
+use AppBundle\Entity\User;
+use AppBundle\Form\RegistrationType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\BrowserKit\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -13,6 +15,7 @@ class UserController extends Controller
 {
     /**
      * @Route("/login", name="login")
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      * @Method({"GET", "POST"})
      */
@@ -25,18 +28,16 @@ class UserController extends Controller
         $lastUsername = $authenticationUtils->getLastUsername();
 
         return $this->render(':user:login.html.twig', array(
-            'last_username' =>$lastUsername, //$lastUsername,
-            'error'         => $error,
+            'last_username' => $lastUsername, //$lastUsername,
+            'error' => $error,
         ));
     }
-
 
     /**
      * @Route("/logout", name="logout")
      */
     public function logoutAction()
     {
-
     }
 
     /**
@@ -46,11 +47,39 @@ class UserController extends Controller
     {
         if ($request->getSession()->get('_locale') == 'en') {
             $request->getSession()->set('_locale', 'uk');
-        }else{
+        } else {
             $request->getSession()->set('_locale', 'en');
         }
 
         return $this->redirectToRoute('homepage');
     }
 
+    /**
+     * @param Request $request
+     * @Route("/registration", name="registration")
+     *
+     * @return RedirectResponse|Response
+     */
+    public function newAction(Request $request)
+    {
+        $user = new User();
+
+        $form = $this->createForm(RegistrationType::class, $user);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()) {
+            $em = $this->getDoctrine()->getManager();
+
+            $em->persist($user);
+
+            $em->flush();
+
+            return $this->redirectToRoute('login');
+        }
+
+        return $this->render(':user:registration.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
 }

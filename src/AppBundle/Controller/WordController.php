@@ -16,18 +16,19 @@ class WordController extends Controller
     public function indexAction()
     {
         $words = $this->getDoctrine()
-            ->getRepository("AppBundle:Word")
+            ->getRepository('AppBundle:Word')
             ->findAll();
 
         return $this->render(':word:index.html.twig', [
             'words' => $words,
-            'users_words' => $this->getUser()->getWords()
+            'users_words' => $this->getUser()->getWords(),
         ]);
     }
 
     /**
      * @param Request $request
      * @Route("/vocabulary/words/new", name="new_word")
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function newAction(Request $request)
@@ -43,7 +44,7 @@ class WordController extends Controller
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()){
+        if ($form->isSubmitted()) {
             $em = $this->getDoctrine()->getManager();
 
             $word = new Word();
@@ -63,14 +64,14 @@ class WordController extends Controller
         }
 
         return $this->render(':word:new.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
     }
-
 
     /**
      * @param Word $word
      * @Route("/vocabulary/favorite/{id}", name="add_favorite")
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function addFavoriteAction(Word $word)
@@ -92,7 +93,6 @@ class WordController extends Controller
         return $this->redirectToRoute('homepage');
     }
 
-
     /**
      * @Route("/vocabulary/learning", name="learning")
      */
@@ -104,8 +104,7 @@ class WordController extends Controller
         $words = $user->getWords();
 
         return $this->render(':word:learning.html.twig', [
-            'words' => $words
+            'words' => $words,
         ]);
     }
-
 }

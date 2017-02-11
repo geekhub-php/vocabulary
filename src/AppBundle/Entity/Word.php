@@ -6,7 +6,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 use Doctrine\ORM\Mapping as ORM;
 
-
 /**
  * @ORM\Entity
  */
@@ -29,7 +28,6 @@ class Word
      */
     protected $users;
 
-
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -42,7 +40,6 @@ class Word
     {
         return $this->id;
     }
-
 
     /**
      * Add user.
@@ -67,5 +64,4 @@ class Word
     {
         $this->users->removeElement($user);
     }
-
 }
