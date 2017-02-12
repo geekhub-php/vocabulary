@@ -1,10 +1,14 @@
 site:
+
+
     login:
       title: Please Log In
       username: Username
       password: Password
       login: login
       registration: Register
+
+
     new_word:
       english: English
       ukrainian: Ukrainian
@@ -16,9 +20,19 @@ site:
     homepage:
       list: List of words
       locale: change lang
+      Previous: Previous
+      Next: Next
+
+
     title: Vocabulary!
+
+
     learning:
       title: Take a look.. words!
+      remove: remove
+      edit: edit
+
+
     nav:
         login: Login
         logout: Logout

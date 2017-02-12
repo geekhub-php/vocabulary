@@ -2,10 +2,8 @@
 
 {% block main %}
     <h1>{{ 'site.learning.title'|trans }}</h1>
-
     <div id="slider">
         <ul>
-
             {% for word in words %}
                 <li class="slide">
                     <div class="slider-container">
@@ -14,13 +12,13 @@
                     <p>Russian: {{ word.translate('ru').getName }}</p>
                     <p>German: {{ word.translate('de').getName }}</p>
                     <p>Italian: {{ word.translate('it').getName }}</p>
+                        <a href="{{ path('remove_word', {'word': word.id}) }}"><span class="glyphicon glyphicon-remove">{{ 'site.learning.remove'|trans }}</span></a>
+                        <a href="{{ path('edit_word', {'word': word.id}) }}"><span class="glyphicon glyphicon-pencil">{{ 'site.learning.edit'|trans }}</span></a>
                     </div>
                 </li>
             {% endfor %}
         </ul>
     </div>
-
-
 {% endblock %}
 {% block stylesheets %}
     {{ parent() }}

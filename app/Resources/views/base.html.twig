@@ -33,7 +33,9 @@
                 <div style="background-color: #99CDD8; height: 500px" class="col-lg-2">
                     {% block side %}
                         <ul>
+                            {% if is_granted('ROLE_USER') %}
                             <li><a href="{{ path('logout') }}">{{ 'site.nav.logout'|trans }}</a></li>
+                            {% endif %}
                             <li><a href="{{ path('new_word') }}">{{ 'site.nav.new_word'|trans }}</a></li>
                             <li><a href="{{ path('homepage') }}">{{ 'site.homepage.list'|trans }}</a></li>
                             <li><a href="{{ path('learning') }}">{{ 'site.nav.learn'|trans }}</a></li>

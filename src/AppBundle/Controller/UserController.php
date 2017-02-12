@@ -41,6 +41,14 @@ class UserController extends Controller
     }
 
     /**
+     * @Route("/")
+     */
+    public function redirectAction()
+    {
+        return $this->redirectToRoute('homepage');
+    }
+
+    /**
      * @Route("/locale", name="locale")
      */
     public function localeAction(Request $request)

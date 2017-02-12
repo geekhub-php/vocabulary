@@ -55,5 +55,8 @@ class UserControllerTest extends WebTestCase
             ->findByUsername('DorianGray');
 
         $this->assertEquals('DorianGray', $user->getUsername());
+
     }
+
+
 }

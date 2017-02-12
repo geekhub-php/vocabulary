@@ -5,6 +5,8 @@ site:
       password: Пароль
       login: Логін
       registration: Реєстрація
+
+
     new_word:
       english: Англійська
       ukrainian: Українська
@@ -12,12 +14,24 @@ site:
       german: Німецька
       italian: Італійська
       save: Зберегти
+
+
     homepage:
       list: Список слів
       locale: Змінити мову
+      Previous: Попередня
+      Next: Наступна
+
+
     title: Словник!
+
+
     learning:
       title: Подивіться... слова!
+      remove: видалити
+      edit: редагувати
+
+
     nav:
         login: Login
         logout: Кінець сеансу
