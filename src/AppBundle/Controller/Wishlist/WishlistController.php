@@ -43,13 +43,20 @@ class WishlistController extends Controller
 
             return $this->redirectToRoute('admin');
         }
-          dump($wishlist->getWords());
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $wishlist->getWords(), /* query NOT result */
+           $request->query->getInt('page', 1)/*page number*/,
+            2/*limit per page*/
+        );
+
+        //dump(count($wishlist-getWords());
           return $this->render('admin/index.html.twig', array(
             'wishlist' => $wishlist,
             // 'id' =>$id,
             'edit_form' => $editForm->createView(),
               'words'=>$wishlist->getWords(),
-
+              'pagination' => $pagination,
         ));
     }
 }
