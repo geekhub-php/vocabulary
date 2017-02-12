@@ -10,4 +10,28 @@ namespace AppBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function findRandomOne()
+    {
+        $count = $this->createQueryBuilder('u')
+            ->select('COUNT(u)')
+            ->getQuery()
+            ->getSingleScalarResult();
+
+        return $this->createQueryBuilder('u')
+            ->setFirstResult(rand(0, $count - 1))
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getSingleResult()
+            ;
+    }
+
+    public function findByUsername($name)
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.username = :name')
+            ->setParameter(':name', $name)
+            ->getQuery()
+            ->getSingleResult();
+    }
 }

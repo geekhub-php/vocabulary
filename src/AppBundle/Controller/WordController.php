@@ -96,7 +96,7 @@ class WordController extends Controller
     /**
      * @Route("/vocabulary/learning", name="learning")
      */
-    public function showRandomFavoriteAction()
+    public function showFavoriteAction()
     {
         /** @var User $user */
         $user = $this->getUser();

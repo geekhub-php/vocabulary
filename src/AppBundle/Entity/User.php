@@ -159,7 +159,7 @@ class User implements UserInterface, \Serializable
      */
     public function setWords($words)
     {
-        $this->words = $words;
+        $this->words[] = $words;
     }
 
     /**

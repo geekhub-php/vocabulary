@@ -19,7 +19,7 @@ class UserController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response
      * @Method({"GET", "POST"})
      */
-    public function loginAction(Request $request)
+    public function loginAction()
     {
         $authenticationUtils = $this->get('security.authentication_utils');
         // get the login error if there is one
@@ -51,14 +51,13 @@ class UserController extends Controller
             $request->getSession()->set('_locale', 'en');
         }
 
-        return $this->redirectToRoute('homepage');
+        return $this->redirect($request->headers->get('referer'), 302);
     }
 
     /**
      * @param Request $request
      * @Route("/registration", name="registration")
-     *
-     * @return RedirectResponse|Response
+     * @return RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function newAction(Request $request)
     {

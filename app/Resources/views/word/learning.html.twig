@@ -3,31 +3,25 @@
 {% block main %}
     <h1>{{ 'site.learning.title'|trans }}</h1>
 
-
-<div id="carousel">
-    <div class="btn-bar">
-        <div id="buttons"><a id="prev" href="#"><</a><a id="next" href="#">></a> </div></div>
-    <div id="slides">
+    <div id="slider">
         <ul>
-                {% for word in words %}
-                    <li class="slide">
-                        <p>English: {{ word.translate('en').getName }}</p>
-                        <p>Ukrainian: {{ word.translate('uk').getName }}</p>
-                        <p>Russian: {{ word.translate('ru').getName }}</p>
-                        <p>German: {{ word.translate('de').getName }}</p>
-                        <p>Italian: {{ word.translate('it').getName }}</p>
-                    </li>
-                {% endfor %}
+
+            {% for word in words %}
+                <li class="slide">
+                    <div class="slider-container">
+                    <p>English: {{ word.translate('en').getName }}</p>
+                    <p>Ukrainian: {{ word.translate('uk').getName }}</p>
+                    <p>Russian: {{ word.translate('ru').getName }}</p>
+                    <p>German: {{ word.translate('de').getName }}</p>
+                    <p>Italian: {{ word.translate('it').getName }}</p>
+                    </div>
+                </li>
+            {% endfor %}
         </ul>
     </div>
-</div>
 
 
 {% endblock %}
-{% block javascripts %}
-    {{ parent() }}
-    <script src="{{ asset('js/slider.js') }}"></script>
-{% endblock javascripts %}
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('css/css.css') }}">

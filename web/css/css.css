@@ -1,97 +1,114 @@
-#carousel {
-    margin:0 auto;
+
+a
+{
+    text-decoration: none;
+    color: #111b47;
 }
 
-#slides {
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-    height: 250px;
+a:hover
+{
+    border-bottom: 1px dashed #ED971F;
+    color: #ED971F;
 }
 
-#slides ul {
-    list-style: none;
-    width:100%;
-    height:250px;
-    margin: 0;
-    padding: 0;
-    position: relative;
-}
+/**** slider ****/
 
-#slides li {
-    width:100%;
-    height:250px;
-    float:left;
-    text-align: center;
-    position: relative;
-    font-family:lato, sans-serif;
-}
-/* Styling for prev and next buttons */
-.btn-bar{
-    max-width: 346px;
-    margin: 0 auto;
-    display: block;
-    position: relative;
-    top: 40px;
-    width: 100%;
-}
-
-#buttons {
-    padding:0 0 5px 0;
-    float:right;
-}
-
-#buttons a {
-    text-align:center;
-    display:block;
-    font-size:50px;
-    float:left;
-    outline:0;
-    margin:0 60px;
-    color: black;
-    text-decoration:none;
-    display:block;
-    padding:9px;
-    width:35px;
-}
-
-a#prev:hover, a#next:hover {
-    color:#FFF;
-    text-shadow:.5px 0px #b14943;
-}
-
-.quote-phrase, .quote-author {
-    font-family:sans-serif;
-    font-weight:300;
-    display: table-cell;
-    vertical-align: middle;
-    padding: 5px 20px;
-    font-family:'Lato', Calibri, Arial, sans-serif;
-}
-
-.quote-phrase {
+#slider, ul
+{
     height: 200px;
-    font-size:24px;
+}
+
+#slider
+{
+    margin: auto;
+    overflow: hidden;
+    padding: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    margin-top: 50px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 14px rgba(0, 0, 0, 0.25);
+    position: relative;
+    width: 600px;
+}
+
+#slider li
+{
+    float: left;
+    position: relative;
+    width: 600px;
+    display: inline-block;
+    height: 200px;
+}
+
+#slider ul
+{
+    list-style: none;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 9000px;
+    transition: left .3s linear;
+    -moz-transition: left .3s linear;
+    -o-transition: left .3s linear;
+    -webkit-transition: left .3s linear;
+    margin-left: -25px;
+    font-family: century gothic;
     color: #000000;
-    font-style:italic;
-    text-shadow:.5px 0px #000000;
 }
 
-.quote-marks {
-    font-size:30px;
-    padding:0 3px 3px;
-    position:inherit;
+/*** Content ***/
+
+.slider-container
+{
+    margin: 0 auto;
+    padding: 0;
+    width: 550px;
+    min-height: 180px;
+    border-bottom: 1px solid #ccc;
 }
 
-.quote-author {
-    font-style:normal;
-    font-size:20px;
-    color: #000000;
-    font-weight:400;
-    height: 30px;
+.slider-container h4
+{
+    color: #0A7FAD;
+    text-shadow: -1px 0px 0px rgba(0, 0, 0, 0.50);
 }
 
-.quoteContainer, .authorContainer {
-    display: table;
-    width: 100%;
+.slider-container  p
+{
+    margin: 10px 25px;
+    font-weight: semi-bold;
+    line-height: 150%;
+    text-align: justify;
+}
+
+/*** target hooks ****/
+
+@-webkit-keyframes slide-animation {
+    0% {opacity:0;}
+    2% {opacity:1;}
+    20% {left:0px; opacity:1;}
+    22.5% {opacity:0.6;}
+    25% {left:-600px; opacity:1;}
+    45% {left:-600px; opacity:1;}
+    47.5% {opacity:0.6;}
+    50% {left:-1200px; opacity:1;}
+    70% {left:-1200px; opacity:1;}
+    72.5% {opacity:0.6;}
+    75% {left:-1800px; opacity:1;}
+    95% {opacity:1;}
+    98% {left:-1800px; opacity:0;}
+    100% {left:0px; opacity:0;}
+}
+
+#slider ul
+{
+    -webkit-animation: slide-animation 25s infinite;
+}
+
+/* use to paused the content on mouse over */
+
+#slider ul:hover
+{
+    -moz-animation-play-state: paused;
+    -webkit-animation-play-state: paused;
 }
