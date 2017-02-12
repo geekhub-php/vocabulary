@@ -5,10 +5,6 @@ security:
                 class: AppBundle\Entity\User
                 property: username
     firewalls:
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
-
         default:
             anonymous: true
             security: true
@@ -22,7 +18,6 @@ security:
 
 
     encoders:
-            Symfony\Component\Security\Core\User\User: bcrypt
             AppBundle\Entity\User: bcrypt
 
     access_control:

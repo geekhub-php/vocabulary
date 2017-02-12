@@ -46,3 +46,14 @@ site:
         logout: Logout
         new_word: Add new word
         learn: Start learning 5 lang's same time.. crazy humanoid
+
+    user:
+      username:
+        notBlank: Sorry, this field can not be blank!
+        minLength: Minimal length is 6 symbols.
+      password:
+        notBlank: Sorry, password is requaired!
+        minLength: Minimal length is 8 symbols.
+
+    word:
+      name: Sorry, this field can not be blank!
