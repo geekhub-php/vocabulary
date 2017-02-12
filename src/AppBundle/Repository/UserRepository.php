@@ -10,7 +10,6 @@ namespace AppBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
-
     public function findRandomOne()
     {
         $count = $this->createQueryBuilder('u')

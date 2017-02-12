@@ -12,8 +12,9 @@ class WordController extends Controller
 {
     /**
      * @param Request $request
-     * @param int $page
+     * @param int     $page
      * @Route("/vocabulary/list/{page}", name="homepage")
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction(Request $request, $page = 1)
@@ -23,7 +24,7 @@ class WordController extends Controller
             ->findAll();
 
         $pagination = $this->get('knp_paginator')
-            ->paginate($words,$request->query->getInt('page', $page), 10);
+            ->paginate($words, $request->query->getInt('page', $page), 10);
 
         return $this->render(':word:index.html.twig', [
             'pagination' => $pagination,
@@ -116,25 +117,35 @@ class WordController extends Controller
 
     /**
      * @param Request $request
-     * @param Word $word
+     * @param Word    $word
      * @Route("/vocabulary/words/edit/{word}", name="edit_word")
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function editAction(Request $request, Word $word)
     {
         /** @var \Symfony\Component\Form\Form $form */
         $form = $this->createFormBuilder()
-            ->add('english', null, ['label_format' => 'site.new_word.english',
-                'data' => $word->translate('en')->getName()
+            ->add('english', null, [
+                'label_format' => 'site.new_word.english',
+                'data' => $word->translate('en')->getName(),
             ])
-            ->add('ukrainian', null, ['label_format' => 'site.new_word.ukrainian',
-                'data' => $word->translate('uk')->getName()])
-            ->add('russian', null, ['label_format' => 'site.new_word.russian',
-                'data' => $word->translate('ru')->getName()])
-            ->add('german', null, ['label_format' => 'site.new_word.german',
-                'data' => $word->translate('de')->getName()])
-            ->add('italian', null, ['label_format' => 'site.new_word.italian',
-                'data' => $word->translate('it')->getName()])
+            ->add('ukrainian', null, [
+                'label_format' => 'site.new_word.ukrainian',
+                'data' => $word->translate('uk')->getName(),
+            ])
+            ->add('russian', null, [
+                'label_format' => 'site.new_word.russian',
+                'data' => $word->translate('ru')->getName(),
+            ])
+            ->add('german', null, [
+                'label_format' => 'site.new_word.german',
+                'data' => $word->translate('de')->getName(),
+            ])
+            ->add('italian', null, [
+                'label_format' => 'site.new_word.italian',
+                'data' => $word->translate('it')->getName(),
+            ])
             ->getForm();
 
         $form->handleRequest($request);
@@ -152,7 +163,7 @@ class WordController extends Controller
             $word->mergeNewTranslations();
             $em->flush();
 
-            return $this->redirectToRoute('homepage');
+            return $this->redirectToRoute('learning');
         }
 
         return $this->render(':word:new.html.twig', [
@@ -163,6 +174,7 @@ class WordController extends Controller
     /**
      * @param Word $word
      * @Route("/vocabulary/words/remove/{word}", name="remove_word")
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function removeAction(Word $word)

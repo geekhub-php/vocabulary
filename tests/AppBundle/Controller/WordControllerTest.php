@@ -4,15 +4,27 @@ namespace tests\AppBundle\Controller;
 
 
 use AppBundle\Controller\WordController;
+use AppBundle\DataFixtures\ORM\LoadFixtures;
 use AppBundle\Entity\User;
+use AppBundle\Entity\Word;
+use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\BrowserKit\Client;
+
 
 class WordControllerTest extends WebTestCase
 {
+    /** @var Client client */
     private $client;
+    /** @var  EntityManager */
+    private $em;
 
     public function setUp()
     {
+
+        $this->em = static::createClient()
+            ->getContainer()->get('doctrine.orm.default_entity_manager');
+
         /** @var User $user */
         $user = static::createClient()
             ->getContainer()->get('doctrine.orm.default_entity_manager')
@@ -57,5 +69,36 @@ class WordControllerTest extends WebTestCase
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         $this->assertCount(6, $crawler->filter('input'));
         $this->assertCount(1, $crawler->filter('button'));
+    }
+
+    public function testEditWord()
+    {
+        /** @var Word $word */
+        $word = $this->em
+            ->getRepository('AppBundle:Word')
+            ->findRandomOne();
+        $crawler = $this->client->request('GET', '/vocabulary/words/edit/'.$word->getId());
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        $this->assertCount(6, $crawler->filter('input'));
+        $this->assertCount(1, $crawler->filter('button'));
+
+        $form = $crawler->selectButton('Save')->form();
+        $form['form[ukrainian]'] = 'ukrainian';
+        $form['form[english]'] = 'english';
+        $form['form[russian]'] = 'russian';
+        $form['form[german]'] = 'german';
+        $form['form[italian]'] = 'DDDDDDDDDDDDDDDDDDDDDD';
+
+
+        $this->client->submit($form);
+
+        $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
+
+        $this->assertEquals($word->translate('en')->getName(), 'english');
+        $this->assertEquals($word->translate('uk')->getName(), 'ukrainian');
+        $this->assertEquals($word->translate('it')->getName(), 'DDDDDDDDDDDDDDDDDDDDDD');
+        $this->assertEquals($word->translate('de')->getName(), 'german');
+        $this->assertEquals($word->translate('ru')->getName(), 'russian');
+
     }
 }

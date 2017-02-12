@@ -6,7 +6,6 @@ use AppBundle\Entity\User;
 use AppBundle\Form\RegistrationType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\BrowserKit\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -65,6 +64,7 @@ class UserController extends Controller
     /**
      * @param Request $request
      * @Route("/registration", name="registration")
+     *
      * @return RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function newAction(Request $request)

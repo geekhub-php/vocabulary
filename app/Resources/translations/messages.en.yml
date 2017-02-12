@@ -1,5 +1,13 @@
 site:
-
+    register:
+        labels:
+            username:      Your firstname
+            locale: locale
+            ua: Ukr
+            en: Eng
+            password:
+                first:      Choose your password
+                second:     Confirm your password
 
     login:
       title: Please Log In

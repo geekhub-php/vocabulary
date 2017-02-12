@@ -1,4 +1,14 @@
 site:
+    register:
+        labels:
+            username:      Логін
+            locale: локаль
+            ua: Укр
+            en: Англ
+            password:
+                first:      Пароль
+                second:     Підтверження паролю
+
     login:
       title: Будь ласка залогіньтесь
       username: Ім'я користувача

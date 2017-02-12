@@ -14,19 +14,19 @@ class RegistrationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('username')
+        $builder->add('username', null, ['label' => 'site.register.labels.username'])
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'invalid_message' => 'The password fields must match.',
                 'options' => ['attr' => ['class' => 'password-field']],
                 'required' => true,
-                'first_options' => ['label' => 'Password*'],
-                'second_options' => ['label' => 'Repeat Password*'],
+                'first_options' => ['label' => 'site.register.labels.password.first'],
+                'second_options' => ['label' => 'site.register.labels.password.second'],
             ])
-            ->add('locale', ChoiceType::class, array(
+            ->add('locale', ChoiceType::class, array('label' => 'site.register.labels.locale',
                 'choices' => array(
-                    'Укр' => 'uk',
-                    'Eng' => 'en',
+                    'site.register.labels.ua' => 'uk',
+                    'site.register.labels.en' => 'en',
                 ),
             ));
     }

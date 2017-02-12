@@ -47,10 +47,10 @@ a:hover
     left: 0px;
     top: 0px;
     width: 9000px;
-    transition: left .3s linear;
-    -moz-transition: left .3s linear;
-    -o-transition: left .3s linear;
-    -webkit-transition: left .3s linear;
+    transition: left .1s linear;
+    -moz-transition: left .1s linear;
+    -o-transition: left .1s linear;
+    -webkit-transition: left .1s linear;
     margin-left: -25px;
     font-family: century gothic;
     color: #000000;
@@ -102,7 +102,7 @@ a:hover
 
 #slider ul
 {
-    -webkit-animation: slide-animation 25s infinite;
+    -webkit-animation: slide-animation 15s infinite;
 }
 
 /* use to paused the content on mouse over */

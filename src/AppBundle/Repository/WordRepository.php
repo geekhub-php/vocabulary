@@ -10,7 +10,18 @@ namespace AppBundle\Repository;
  */
 class WordRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function findRandom()
+    public function findRandomOne()
     {
+        $count = $this->createQueryBuilder('u')
+            ->select('COUNT(u)')
+            ->getQuery()
+            ->getSingleScalarResult();
+
+        return $this->createQueryBuilder('u')
+            ->setFirstResult(rand(0, $count - 1))
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getSingleResult()
+            ;
     }
 }
