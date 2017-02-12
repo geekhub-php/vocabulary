@@ -141,12 +141,12 @@ class User implements UserInterface, \Serializable
 
     public function getSalt()
     {
-        // TODO: Implement getSalt() method.
+        return;
     }
 
     public function eraseCredentials()
     {
-        // TODO: Implement eraseCredentials() method.
+        return;
     }
 
     /**
