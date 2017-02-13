@@ -1,0 +1,35 @@
+AppBundle\Entity\User:
+  User{1..10}:
+    username: <username()>
+    password: Qwer1234
+    words: '@Word{<numberBetween(1, 10)>..<numberBetween(1, 50)>}'
+
+AppBundle\Entity\Word:
+  Word{1..500}:
+    user: '@User{<numberBetween(1, 10)>..<numberBetween(1, 10)>}'
+
+AppBundle\Entity\WordTranslation:
+  Translation1{1..500}:
+      name: <word()>larare
+      locale: it
+      translatable: '@Word<current()>'
+
+  Translation2{1..500}:
+      name: <word()>cherden
+      locale: de
+      translatable: '@Word<current()>'
+
+  Translation3{1..500}:
+      name: <word()>тсяться
+      locale: ru
+      translatable: '@Word<current()>'
+
+  Translation4{1..500}:
+      name: що<word()>ще?
+      locale: uk
+      translatable: '@Word<current()>'
+
+  Translation5{1..500}:
+      name: <word()>
+      locale: en
+      translatable: '@Word<current()>'

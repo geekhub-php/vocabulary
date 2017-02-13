@@ -1,24 +1,27 @@
-# To get started with security, check out the documentation:
-# http://symfony.com/doc/current/security.html
 security:
-
-    # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
-        in_memory:
-            memory: ~
-
+        our_db_provider:
+            entity:
+                class: AppBundle\Entity\User
+                property: username
     firewalls:
-        # disables authentication for assets and the profiler, adapt it according to your needs
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
+        default:
+            anonymous: true
+            security: true
+            form_login:
+                login_path: login
+                check_path: login
+                default_target_path: homepage
+            logout:
+                path:   /logout
+                target: /login
 
-        main:
-            anonymous: ~
-            # activate different ways to authenticate
 
-            # http_basic: ~
-            # http://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+    encoders:
+            AppBundle\Entity\User: bcrypt
 
-            # form_login: ~
-            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+    access_control:
+        # require ROLE_ADMIN for /admin*
+         - { path: ^/vocabulary, roles: ROLE_USER }
+         - { path: /login$, allow_if: "not has_role('ROLE_USER')" }
+         - { path: ^/registration$, allow_if: "not has_role('ROLE_USER')" }

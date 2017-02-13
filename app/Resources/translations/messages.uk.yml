@@ -1,0 +1,50 @@
+site:
+    register:
+        labels:
+            username:      Логін
+            locale: локаль
+            ua: Укр
+            en: Англ
+            password:
+                first:      Пароль
+                second:     Підтверження паролю
+
+    login:
+      title: Будь ласка залогіньтесь
+      username: Ім'я користувача
+      password: Пароль
+      login: Логін
+      registration: Реєстрація
+
+
+    new_word:
+      english: Англійська
+      ukrainian: Українська
+      russian: Російська
+      german: Німецька
+      italian: Італійська
+      save: Зберегти
+
+
+    homepage:
+      list: Список слів
+      locale: Змінити мову
+      Previous: Попередня
+      Next: Наступна
+
+
+    title: Словник!
+
+
+    learning:
+      title: Подивіться... слова!
+      remove: видалити
+      edit: редагувати
+
+
+    nav:
+        login: Login
+        logout: Кінець сеансу
+        new_word: Додайте нове слово
+        learn: Запустіть вивчення 5 мов водночас.. божевільний гуманоїд
+
