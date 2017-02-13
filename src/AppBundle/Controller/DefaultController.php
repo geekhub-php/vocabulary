@@ -11,7 +11,10 @@ use AppBundle\Entity\Word\Word;
 
 class DefaultController extends Controller
 {
-
+    /**
+     * @Route("/{_locale}", requirements={"_locale" = "en|uk|bel"}, defaults={"_locale" = "en"}, name="homepage" )
+     * @Method({"GET"})
+     */
     public function indexAction(Request $request)
     {
         // replace this example code with whatever you need
