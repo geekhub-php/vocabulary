@@ -101,4 +101,15 @@ class WordControllerTest extends WebTestCase
         $this->assertEquals($word->translate('ru')->getName(), 'russian');
 
     }
+
+    public function testSecuredArea()
+    {
+        $this->client->request('GET', '/login');
+
+        $this->assertEquals(403, $this->client->getResponse()->getStatusCode());
+
+        $this->client->request('GET', '/registration');
+
+        $this->assertEquals(403, $this->client->getResponse()->getStatusCode());
+    }
 }

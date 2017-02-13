@@ -11,6 +11,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
 class DoctrineListener implements EventSubscriber
 {
     private $encoder;
+
     public function __construct(UserPasswordEncoder $encoder)
     {
         $this->encoder = $encoder;
