@@ -16,17 +16,6 @@ class Word extends BaseSuperClass
 {
     use ORMBehaviors\Translatable\Translatable;
 
-//    /**
-//     * @var string
-//     *
-//     * @ORM\Column(name="word", type="string", length=150)
-//     *
-//     * @Assert\NotBlank()
-//     * @Assert\Type("string")
-//     * @Assert\Length(min="3", max="150")
-//     */
-//    private $word;
-
     /**
      * @var User
      *
@@ -42,36 +31,17 @@ class Word extends BaseSuperClass
     private $wishlists;
 
     /**
+     * @Assert\Valid
+     */
+    protected $translations;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->wishlists = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
-//    /**
-//     * Set word
-//     *
-//     * @param string $word
-//     *
-//     * @return Word
-//     */
-//    public function setWord($word)
-//    {
-//        $this->word = $word;
-//
-//        return $this;
-//    }
-//
-//    /**
-//     * Get word
-//     *
-//     * @return string
-//     */
-//    public function getWord()
-//    {
-//        return $this->word;
-//    }
 
     /**
      * Set user

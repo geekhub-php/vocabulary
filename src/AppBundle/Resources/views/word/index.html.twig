@@ -37,20 +37,20 @@
                                     <td>{{ word.translate('ru').word }}</td>
                                     <td>{{ word.translate('fr').word }}</td>
                                     <td>{{ word.translate('es').word }}</td>
-                                    <td>{{ word.user.userProfile.firstName }} {{ word.user.userProfile.lastName }}</td>
+                                    <td><a href="{{ path('user_show', {'id': word.user.id}) }}">{{ word.user.userProfile.firstName }} {{ word.user.userProfile.lastName }}</a></td>
                                     <td>{{ word.dateCreated|date("d.m.Y") }}</td>
                                     <td>{{ word.dateUpdated|date("d.m.Y") }}</td>
                                     <td>
                                         {% if is_granted('edit_word', app.user) %}
                                             {% if word in app.user.wishlist.words %}
-                                                <a class="btn btn-danger" href="{{ path('wishlist_remove_word', {'id': app.user.wishlist.id, 'wordId': word.id}) }}">{{ 'wishlist.remove'|trans }}</a>
+                                                <a class="btn btn-danger btn-xs" href="{{ path('wishlist_remove_word', {'id': app.user.wishlist.id, 'wordId': word.id}) }}">{{ 'wishlist.remove'|trans }}</a>
                                             {% else %}
-                                                <a class="btn btn-default" href="{{ path('wishlist_add_word', {'id': app.user.wishlist.id, 'wordId': word.id}) }}">{{ 'wishlist.add'|trans }}</a>
+                                                <a class="btn btn-default btn-xs" href="{{ path('wishlist_add_word', {'id': app.user.wishlist.id, 'wordId': word.id}) }}">{{ 'wishlist.add'|trans }}</a>
                                             {% endif %}
-                                            <a class="btn btn-default" href="{{ path('word_edit', {'id': word.id}) }}">{{ 'base.edit'|trans }}</a>
+                                            <a class="btn btn-default btn-xs" href="{{ path('word_edit', {'id': word.id}) }}">{{ 'base.edit'|trans }}</a>
                                         {% endif %}
                                         {% if is_granted('edit', word) %}
-                                            <a class="btn btn-danger" href="{{ path('word_delete', {'id': word.id}) }}">{{ 'base.delete'|trans }}</a>
+                                            <a class="btn btn-danger btn-xs" href="{{ path('word_delete', {'id': word.id}) }}">{{ 'base.delete'|trans }}</a>
                                         {% endif %}
                                     </td>
                                 </tr>

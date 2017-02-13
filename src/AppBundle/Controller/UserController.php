@@ -9,8 +9,10 @@ use AppBundle\Form\UserType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Class UserController.
@@ -52,6 +54,99 @@ class UserController extends Controller
             'title' => $this->get('translator')->trans('user.signup'),
             'form'      => $form->createView()
         ));
+    }
+
+    /**
+     * @Route("/users/{id}/{page}", requirements={"id": "\d+", "page": "\d+"}, name="user_show")
+     * @Method("GET")
+     *
+     * @param User $user
+     * @param int $page
+     *
+     * @return Response
+     */
+    public function showAction(User $user, $page = 1)
+    {
+        $words = $this->getDoctrine()
+            ->getRepository('AppBundle:Word')
+            ->findby(array(
+                'user' => $user
+            ));
+
+        $pagination = $this->get('knp_paginator')->paginate(
+            $words, $page, 5
+        );
+
+        return $this->render('AppBundle:user:show.html.twig', array(
+            'title'      => $this->get('translator')->trans('word.titleMany'),
+            'user'       => $user,
+            'pagination' => $pagination
+        ));
+    }
+
+    /**
+     * @Route("/users/{id}/edit", name="user_edit")
+     * @Method({"GET", "POST"})
+     *
+     * @param Request $request
+     * @param User $user
+     *
+     * @return Response
+     */
+    public function editAction(Request $request, User $user)
+    {
+        if ($this->getUser() != $user && !$this->isGranted('ROLE_ADMIN')) {
+            throw $this->createAccessDeniedException();
+        }
+
+        $form = $this->createForm(UserType::class, $user, array(
+            'authorizationChecker' => $this->get('security.authorization_checker')
+        ));
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $userData = $form->getData();
+
+            if (!empty($user->getPlainPassword())) {
+                $password = $this->get('security.password_encoder')
+                    ->encodePassword($user, $user->getPlainPassword());
+                $user->setPassword($password);
+            }
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($userData);
+            $em->persist($user);
+            $em->flush();
+
+            return $this->redirectToRoute('homepage');
+        }
+
+        return $this->render('AppBundle:user:edit.html.twig', array(
+            'title' => $this->get('translator')->trans('user.profile.title'),
+            'form'      => $form->createView()
+        ));
+    }
+
+    /**
+     * @Route("/users/{id}/delete", requirements={"id": "\d+"}, name="user_delete")
+     * @Method({"GET", "POST"})
+     *
+     * @param User $user
+     *
+     * @return Response
+     */
+    public function deleteAction(User $user)
+    {
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            throw $this->createAccessDeniedException();
+        }
+
+        $em = $this->getDoctrine()->getManager();
+
+        $em->remove($user);
+        $em->flush();
+
+        return $this->redirectToRoute('word_index');
     }
 
     /**

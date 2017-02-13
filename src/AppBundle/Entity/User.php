@@ -31,7 +31,7 @@ class User extends BaseSuperClass implements AdvancedUserInterface, \Serializabl
     /**
      * @var string
      *
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(groups={"signup"})
      * @Assert\Length(min="8", max="4096")
      */
     private $plainPassword;
