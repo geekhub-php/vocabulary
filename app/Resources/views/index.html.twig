@@ -19,7 +19,7 @@
           <li class="active"><a href="{{ path('homepage')}}">{{ 'main.navig.home' | trans }}</a></li>
           <li><a href="{{ path('information')}}">{{ 'main.navig.information' | trans }}</a></li>
           <li><a href="{{ path('login')}}">{{ 'main.navig.login' | trans }}</a></li>
-          <li><a href="{{ path('admin')}}">seting</a></li>
+          <li><a href="{{ path('admin',  {'id': wishlist[0].getId})}}">seting</a></li>
 
       </ul>
   </div>
@@ -38,7 +38,7 @@
      </div>
  </div>
 
-{{ data }}<br>
+
 
 
 

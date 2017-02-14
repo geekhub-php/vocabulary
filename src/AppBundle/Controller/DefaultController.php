@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Word\Word;
-
+use AppBundle\Entity\Wishlist\Wishlist;
 class DefaultController extends Controller
 {
     /**
@@ -23,11 +23,12 @@ class DefaultController extends Controller
 
   //      return new Response($t);
         $em=$this->getDoctrine()->getManager();
-        $word = $em->getRepository('AppBundle:Word\Word')->findOneById(5);
+        $wishlist = $em->getRepository('AppBundle:Wishlist\Wishlist')->findAll();
         //$word->translate('en')->getName();
-        // dump($word->translate('EN')->getName());
+
+        dump($wishlist);
         //dump($request->getLocale());
-        return $this->render('index.html.twig', array('data' => $word->translate('EN')->getName()));
+        return $this->render('index.html.twig', array('wishlist'=>$wishlist));
     }
 
     /**

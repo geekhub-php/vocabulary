@@ -14,3 +14,15 @@ web_profiler:
 
 swiftmailer:
     disable_delivery: true
+
+doctrine:
+    dbal:
+        default_connection: default
+        connections:
+            default:
+                driver:   pdo_sqlite
+                memory:   true
+                charset:  UTF8
+                mapping_types:
+                    enum: string
+                path: %kernel.cache_dir%/test.db

@@ -24,12 +24,13 @@ class WishlistController extends Controller
      * @Method({"GET", "POST"})
      */
 
-    public function editWishlistAction(Request $request, Wishlist $wishlist, $id)
+    public function editWishlistAction(Request $request, $id, Wishlist $wishlist)
     {
-       /* $wishlist = $this->getDoctrine()
+        //if ($this->getUser())
+       /*$wishlist = $this->getDoctrine()
             ->getRepository('AppBundle:Wishlist\Wishlist')
             ->find($id);
-       */
+*/
         $editForm = $this->createForm(WishlistType::class, $wishlist,
             array('locale' =>$request->getLocale())
            // ['em' => $this->getDoctrine()->getManager(),]

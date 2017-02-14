@@ -103,6 +103,21 @@ class Wishlist
 
 
     /**
+     * Add words.
+     *
+     * @param \AppBundle\Entity\Word\Word $words
+     *
+     * @return Words
+     */
+    public function setWords($words)
+    {
+        $this->words= $words;
+
+        return $this;
+    }
+
+
+    /**
      * Get words
      *
      * @return array

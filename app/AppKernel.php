@@ -30,6 +30,8 @@ class AppKernel extends Kernel
             $bundles[] = new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
 
 
+
+
         }
 
         return $bundles;

@@ -27,7 +27,7 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
 
     public function load(ObjectManager $manager)
     {
-/*
+
         $word = new Word;
         $word->translate('uk')->setName('слон');
         $word->translate('en')->setName('elephant');
@@ -54,38 +54,46 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
 
         $word = new Word;
         $word->translate('uk')->setName('батьківщина');
-        $word->translate(en')->setName('homeland');
+        $word->translate('en')->setName('homeland');
         $word->translate('bel')->setName('радзіма');
         $manager->persist($word);
         $word->mergeNewTranslations();
         $manager->flush();
-
         $user = new User();
-        $user->setUsername('user1');
+        $user->setUsername('user');
 
         //$user->setSalt(md5(uniqid()));
-        $test_password = 'user1';
+        $test_password = 'user';
         $encoder = $this->container->get('security.password_encoder');
         $password = $encoder->encodePassword($user, $test_password);
         $user->setPassword($password);
         $user->setRole('ROLE_USER');
         $manager->persist($user);
         $manager->flush();
-        */
+
 
         $wishlist = new Wishlist();
-        $user = $manager->getRepository('AppBundle:User\User')->find('1');
+        $user = $manager->getRepository('AppBundle:User\User')
+            ->find('user');
+            //->findBy(array('post' => $post->getId()));
         $wishlist->setUser($user);
-        $word = $manager->getRepository('AppBundle:Word\Word')->find('4');
-        $wishlist->addWord($word);
-        $word = $manager->getRepository('AppBundle:Word\Word')->find('5');
-        $wishlist->addWord($word);
-        $word = $manager->getRepository('AppBundle:Word\Word')->find('6');
-        $wishlist->addWord($word);
-        $word = $manager->getRepository('AppBundle:Word\Word')->find('7');
-        $wishlist->addWord($word);
+
+        $word = $manager->getRepository('AppBundle:Word\Word')->findAll();
+        $wishlist->setWords($word);
+
         $manager->persist($wishlist);
         $manager->flush();
+
+
+       /* $word = $manager->getRepository('AppBundle:Word\Word')->find('2');
+        $wishlist->addWord($word);
+        $word = $manager->getRepository('AppBundle:Word\Word')->find('3');
+        $wishlist->addWord($word);
+        $word = $manager->getRepository('AppBundle:Word\Word')->find('4');
+        $wishlist->addWord($word);
+      */
+
+
     }
 
     public function getOrder()
