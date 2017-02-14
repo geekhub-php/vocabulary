@@ -20,7 +20,6 @@ word:
                 en: Enter a english word
                 ru: Enter a russian word
                 ua: Enter a ukrainian word
-
 template:
     navbar:
         home: Home
@@ -34,3 +33,5 @@ template:
             word: Word
             language: Language
             action: Action
+Previous: Previous
+Next: Next

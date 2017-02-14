@@ -10,3 +10,9 @@ user:
                 length:
                     username: Min length = 3
                     password: Min length = 6
+word:
+    form:
+        add:
+            error:
+                not_blank:
+                    word: Enter the word

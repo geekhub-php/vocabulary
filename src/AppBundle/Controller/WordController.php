@@ -31,15 +31,14 @@ class WordController extends Controller
 
         if ($user instanceof User) {
             $wishlist = $user->getWishlist();
-        }
-        else {
+        } else {
             $wishlist = null;
         }
         $words = $em->getRepository('AppBundle:Word')->findAll();
 
         $pagination = $this->get('knp_paginator')->paginate($words,
             $request->query->getInt('page', $page),
-            5);
+            30);
         /**@var Wishlist $wishlist*/
         return $this->render('AppBundle:word:index.html.twig', array(
             'words' => $pagination,
@@ -55,13 +54,13 @@ class WordController extends Controller
      */
     public function newAction(Request $request)
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $form = $this->get('app.form.manager')->createWordForm($request);
-        if ($form instanceOf Form) {
+        if ($form instanceof Form) {
             return $this->render('AppBundle:word:new.html.twig', array(
                 'form' => $form->createView(),
             ));
-        }
-        else {
+        } else {
             return $this->redirectToRoute('homepage');
         }
     }

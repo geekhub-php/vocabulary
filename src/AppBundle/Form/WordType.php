@@ -57,6 +57,4 @@ class WordType extends AbstractType
     {
         return 'appbundle_word';
     }
-
-
 }

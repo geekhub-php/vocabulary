@@ -33,6 +33,4 @@ class LanguageType extends AbstractType
     {
         return 'appbundle_language';
     }
-
-
 }

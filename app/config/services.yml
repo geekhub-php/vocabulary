@@ -4,12 +4,12 @@ parameters:
 #    parameter_name: value
 
 services:
-  app.security.login_form_authenticator:
-        class: AppBundle\Security\LoginFormAuthenticator
-        autowire: true
   app.form.manager:
         class: AppBundle\Services\FormManager
         arguments: ["@security.password_encoder", "@form.factory", "@doctrine"]
+  app.security.login_form_authenticator:
+        class: AppBundle\Security\LoginFormAuthenticator
+        autowire: true
   app.user_locale_listener:
           class: AppBundle\EventListener\UserLocaleListener
           arguments: ['@session']
@@ -20,8 +20,3 @@ services:
           arguments: ['%kernel.default_locale%']
           tags:
               - { name: kernel.event_subscriber }
-  app.twig_extension:
-          class: AppBundle\Twig\ViewExtension
-          public: false
-          tags:
-              - { name: twig.extension }

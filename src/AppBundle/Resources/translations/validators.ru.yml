@@ -10,3 +10,9 @@ user:
                 length:
                     username: Минимальная длина логина 3 символа
                     password: Минимальная длина пароля 6 символов
+word:
+    form:
+        add:
+            error:
+                not_blank:
+                    word: Введите слово

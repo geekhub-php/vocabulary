@@ -1,5 +1,6 @@
 {% extends 'AppBundle::base.html.twig' %}
 {% block content %}
+    {% if words %}
     <table class="table table-striped">
         <thead>
             <tr>
@@ -14,15 +15,15 @@
         <tbody>
             {% for word in words %}
             <tr>
-                <td>{{ loop.index }}</td>
+                <td>{{ word.id }}</td>
                 <td>{{ word.name }}</td>
                 <td>{{ word.language.name }}</td>
                 {% if app.user %}
                 <td>
                     {% if word in wishlist.words  %}
-                        <a href="/wishlist/word/{{ word.id }}/delete">Remove from wishlist</a>
+                        <a href="{{ path('wishlist_word_delete', {'id': word.id }) }}">Remove from wishlist</a>
                     {% else  %}
-                        <a href="/wishlist/word/{{ word.id }}/add">Add to wishlist</a>
+                        <a href="{{ path('wishlist_word_add', {'id': word.id }) }}">Add to wishlist</a>
                     {% endif %}
                 </td>
                 {% endif %}
@@ -33,4 +34,7 @@
     <div class="col-md-offset-4">
         {{ knp_pagination_render(words) }}
     </div>
+        {% else %}
+            <p>There are no words</p>
+            {% endif %}
 {% endblock %}

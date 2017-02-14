@@ -4,6 +4,7 @@ user:
             label:
                 _username: Логин
                 _password: Пароль
+            error: Это поле не может быть пустым
         registration:
             label:
                 username: Логин
@@ -12,6 +13,13 @@ user:
                 language: Выберите язык
                 fullname: Имя и фамилия
                 email: Email
+word:
+    form:
+        new:
+            label:
+                en: Введите слово на англ.
+                ru: Введите слово на русском
+                ua: Введите слово на украинском
 template:
     navbar:
         home: Главная

@@ -6,16 +6,11 @@ security:
         users:
             entity: {class: AppBundle\Entity\User, property: username}
 
-    role_hierarchy:
-            ROLE_ADMIN:       [ROLE_USER, ROLE_MODERATOR]
-            ROLE_MODERATOR: [ROLE_USER]
-
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-
         main:
             anonymous: ~
             form_login:

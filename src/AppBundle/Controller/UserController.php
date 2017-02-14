@@ -8,7 +8,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Form;
-use Symfony\Component\HttpFoundation\Request;;
+use Symfony\Component\HttpFoundation\Request;
+
+;
 
 class UserController extends Controller
 {
@@ -16,7 +18,7 @@ class UserController extends Controller
     /**
      * Show user list
      *
-     * @Route("/user/{page}", name="user_index")
+     * @Route("/user", name="user_index", requirements={"page": "\d+"})
      * @Method("GET")
      */
     public function indexAction(Request $request, $page = 1)
@@ -31,7 +33,6 @@ class UserController extends Controller
 
         return $this->render('AppBundle:user:show.html.twig', [
             'user' => $user,
-            'categories' => null,
             'words' => $pagination
         ]);
     }
@@ -40,10 +41,10 @@ class UserController extends Controller
      * @param Request $request
      *
      * @Route("/user/login", name="user_login")
+     * @Method({"GET", "POST"})
      */
     public function loginAction(Request $request)
     {
-
         $authenticationUtils = $this->get('security.authentication_utils');
 
         // get the login error if there is one
@@ -87,8 +88,7 @@ class UserController extends Controller
                     'form' => $form->createView(),
                 )
             );
-        }
-        else {
+        } elseif ($form == true) {
             $this->get('security.authentication.guard_handler')
                 ->authenticateUserAndHandleSuccess(
                     $user,
@@ -96,9 +96,8 @@ class UserController extends Controller
                     $this->get('app.security.login_form_authenticator'),
                     'main');
             $request->getSession()->set('_locale', $user->getLanguage());
-            return $this->redirectToRoute('user_show');
+            return $this->redirectToRoute('homepage');
         }
-
     }
 
 
@@ -120,66 +119,8 @@ class UserController extends Controller
                 'form' => $editForm->createView(),
                 'categories' => null
             ));
-        }
-        else {
+        } else {
             return $this->redirect($editForm);
         }
-    }
-
-    /**
-     *
-     * @Route("/search/user", name="user_search")
-     * @Method({"GET", "POST"})
-     */
-    public function searchAction(Request $request)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $categoryRepository = $em->getRepository('AppBundle:Category');
-
-        $result = $this->get('app.form_manager')
-            ->createSearchForm($request, 'AppBundle:User');
-
-        if ($result['valid'] == true) {
-            return $this->render('AppBundle:User:search.html.twig', array(
-                'users' => $result['data'],
-                'categories' => $categoryRepository->findAll(),
-                'form' => $result['form']->createView(),
-            ));
-        }
-
-        return $this->render('AppBundle:User:search.html.twig', array(
-                'categories' => $categoryRepository->findAll(),
-                'form' => $result['form']->createView(),
-                'users' => null,
-            )
-        );
-    }
-    /**
-     *
-     * @Route("/user/{id}/posts/{page}", name="user_posts")
-     * @Method({"GET"})
-     */
-    public function postsAction(Request $request, User $user, $page = 1)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $postRepository = $em->getRepository('AppBundle:Post');
-
-        if ($this->getUser() === $user) {
-            $pagination = $this->get('knp_paginator')->paginate($user->getPosts(),
-                $request->query->getInt('page', $page), 4
-            );
-        }
-        else {
-            $pagination = $this->get('knp_paginator')->paginate($postRepository->findApprovedUserPosts($user),
-                $request->query->getInt('page', $page), 4
-            );
-        }
-
-        return $this->render('AppBundle:User:posts.html.twig', [
-            'user' => $user,
-            'posts' => $pagination,
-            'categories' => null,
-        ]);
     }
 }

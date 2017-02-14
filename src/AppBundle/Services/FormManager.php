@@ -8,7 +8,6 @@
 
 namespace AppBundle\Services;
 
-
 use AppBundle\Entity\User;
 use AppBundle\Entity\Wishlist;
 use AppBundle\Entity\Word;
@@ -30,8 +29,7 @@ class FormManager
     public function __construct(UserPasswordEncoderInterface $passwordEncoder,
                                 FormFactoryInterface $formFactory,
                                 RegistryInterface $doctrine
-    )
-    {
+    ) {
         $this->passwordEncoder = $passwordEncoder;
         $this->formFactory = $formFactory;
         $this->doctrine = $doctrine;
@@ -75,7 +73,7 @@ class FormManager
 
             $engLanguage = $em->getRepository('AppBundle:Language')->find(1);
             $ruLanguage = $em->getRepository('AppBundle:Language')->find(2);
-            $uaLanguage = $em->getRepository('AppBundle:Language')->find(4);
+            $uaLanguage = $em->getRepository('AppBundle:Language')->find(3);
 
             $engName = $form['word_eng']->getData();
             $engWord->setName($engName);
@@ -108,5 +106,4 @@ class FormManager
 
         return $form;
     }
-
 }

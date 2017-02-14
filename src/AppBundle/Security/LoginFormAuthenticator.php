@@ -23,12 +23,10 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
     public function __construct(FormFactoryInterface $formFactory,
                                 UserPasswordEncoder $passwordEncoder,
                                 RouterInterface $router
-    )
-    {
+    ) {
         $this->formFactory = $formFactory;
         $this->passwordEncoder = $passwordEncoder;
         $this->router = $router;
-
     }
     public function getCredentials(Request $request)
     {
@@ -68,5 +66,4 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
     {
         return $this->router->generate('homepage');
     }
-
 }
