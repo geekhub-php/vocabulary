@@ -1,5 +1,4 @@
-{% if app.user %}
-{% if app.user.wishlist.words %}
+{% if app.user.wishlist.words|length > 0 %}
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -34,5 +33,4 @@
         <span class="sr-only">Next</span>
     </a>
 </div>
-{% endif %}
 {% endif %}

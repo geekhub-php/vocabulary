@@ -27,10 +27,11 @@ class WishlistController extends Controller
         $em = $this->getDoctrine()->getManager();
         /**@var \AppBundle\Entity\Wishlist $wishlist*/
         $wishlist = $user->getWishlist();
-        $wishlist->addWord($word);
-        $em->persist($wishlist);
-        $em->flush();
-
+        if (!$wishlist->getWords()->contains($word)) {
+            $wishlist->addWord($word);
+            $em->persist($wishlist);
+            $em->flush();
+        }
         return $this->redirectToRoute('homepage');
     }
     /**
