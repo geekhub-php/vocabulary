@@ -1,0 +1,37 @@
+user:
+    form:
+        login:
+            label:
+                _username: Username
+                _password: Password
+            error: This field can't be empty
+        registration:
+            label:
+                username: Username
+                password: Password
+                repeated_password: Repeat password
+                language: Choose your language
+                fullname: Fullname
+                email: Email
+word:
+    form:
+        new:
+            label:
+                en: Enter a english word
+                ru: Enter a russian word
+                ua: Enter a ukrainian word
+template:
+    navbar:
+        home: Home
+        add_word: Add word
+        login: Login
+        register: Register
+        profile: Profile
+        logout: Logout
+    word:
+        index:
+            word: Word
+            language: Language
+            action: Action
+Previous: Previous
+Next: Next

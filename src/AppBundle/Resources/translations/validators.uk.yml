@@ -1,0 +1,18 @@
+user:
+    form:
+        registration:
+            error:
+                not_blank:
+                    username: Введiть iм'я користувача
+                    email: Введiть email
+                    password: Введiть пароль
+                    fullname: Введiть iм'я та прiзвище
+                length:
+                    username: Мiнiмальна довжина юзернейма 3 символи
+                    password: Мiнiмальна довжина пароля 6 символiв
+word:
+    form:
+        add:
+            error:
+                not_blank:
+                    word: Введiть слово

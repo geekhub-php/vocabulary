@@ -1,0 +1,40 @@
+{% extends 'AppBundle::base.html.twig' %}
+{% block content %}
+    {% if words %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>{% trans %}template.word.index.word{% endtrans %}</th>
+                <th>{% trans %}template.word.index.language{% endtrans %}</th>
+                {% if app.user %}
+                <th>{% trans %}template.word.index.action{% endtrans %}</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for word in words %}
+            <tr>
+                <td>{{ word.id }}</td>
+                <td>{{ word.name }}</td>
+                <td>{{ word.language.name }}</td>
+                {% if app.user %}
+                <td>
+                    {% if word in wishlist.words  %}
+                        <a href="{{ path('wishlist_word_delete', {'id': word.id }) }}">Remove from wishlist</a>
+                    {% else  %}
+                        <a href="{{ path('wishlist_word_add', {'id': word.id }) }}">Add to wishlist</a>
+                    {% endif %}
+                </td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="col-md-offset-4">
+        {{ knp_pagination_render(words) }}
+    </div>
+        {% else %}
+            <p>There are no words</p>
+            {% endif %}
+{% endblock %}

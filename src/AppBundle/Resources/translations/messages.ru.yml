@@ -1,0 +1,35 @@
+user:
+    form:
+        login:
+            label:
+                _username: Логин
+                _password: Пароль
+            error: Это поле не может быть пустым
+        registration:
+            label:
+                username: Логин
+                password: Пароль
+                repeated_password: Подтвердите пароль
+                language: Выберите язык
+                fullname: Имя и фамилия
+                email: Email
+word:
+    form:
+        new:
+            label:
+                en: Введите слово на англ.
+                ru: Введите слово на русском
+                ua: Введите слово на украинском
+template:
+    navbar:
+        home: Главная
+        add_word: Добавить слово
+        login: Войти
+        register: Регистрация
+        profile: Профиль
+        logout: Выйти
+    word:
+        index:
+            word: Слово
+            language: Язык
+            action: Действие

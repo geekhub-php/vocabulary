@@ -1,0 +1,35 @@
+user:
+    form:
+        login:
+            label:
+                _username: Логiн
+                _password: Пароль
+            error: Це поле не може бути порожнiм
+        registration:
+            label:
+                username: Логiн
+                password: Пароль
+                repeated_password: Пiдтвердiть пароль
+                language: Оберiть мову
+                fullname: Iм'я та прiзвище
+                email: Email
+word:
+    form:
+        new:
+            label:
+                en: Введiть слово на англ.
+                ru: Введiть слово на рос.
+                ua: Введiть слово на укр.
+template:
+    navbar:
+        home: Головна
+        add_word: Додати слово
+        login: Увiйти
+        register: Реєстрацiя
+        profile: Профiль
+        logout: Вийти
+    word:
+        index:
+            word: Слово
+            language: Мова
+            action: Дiя

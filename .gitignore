@@ -14,3 +14,14 @@
 !var/SymfonyRequirements.php
 /vendor/
 /web/bundles/
+/.idea/
+php-cs-fixer.phar
+.php_cs.cache
+*.*~
+/bower_components/
+/node_modules/
+/web/fonts/
+/web/css/
+/web/images/
+/web/js/
+/web/bundles/
