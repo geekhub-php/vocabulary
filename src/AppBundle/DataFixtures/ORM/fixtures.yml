@@ -5,37 +5,37 @@ AppBundle\Entity\User:
         password: admin
         email: admin@example.com
         roles: ["ROLE_ADMIN"]
-        dateCreated: '<dateTimeBetween("-10 days", "now")>'
-        dateUpdated: '<dateTimeBetween("now", "+3 days")>'
+        createdAt: '<dateTimeBetween("-10 days", "now")>'
+        updatedAt: '<dateTimeBetween("now", "+3 days")>'
     userDefault2:
         userProfile (unique): '@uProfile2'
         username (unique): user
         password: user
         email: user@example.com
         roles: ["ROLE_USER"]
-        dateCreated: '<dateTimeBetween("-10 days", "now")>'
-        dateUpdated: '<dateTimeBetween("now", "+3 days")>'
+        createdAt: '<dateTimeBetween("-10 days", "now")>'
+        updatedAt: '<dateTimeBetween("now", "+3 days")>'
     user{3..12}:
         userProfile (unique): '@uProfile<current()>'
         username (unique): '<username()>'
         password: '<password()>'
         email (unique): '<email()>'
         roles: '<randomElements(["ROLE_USER"], 1)>'
-        dateCreated: '<dateTimeBetween("-10 days", "now")>'
-        dateUpdated: '<dateTimeBetween("now", "+3 days")>'
+        createdAt: '<dateTimeBetween("-10 days", "now")>'
+        updatedAt: '<dateTimeBetween("now", "+3 days")>'
 
 AppBundle\Entity\UserProfile:
     uProfile{1..12}:
         firstName: '<firstName()>'
         lastName: '<lastName()>'
-        dateCreated: '<dateTimeBetween("-10 days", "now")>'
-        dateUpdated: '<dateTimeBetween("now", "+3 days")>'
+        createdAt: '<dateTimeBetween("-10 days", "now")>'
+        updatedAt: '<dateTimeBetween("now", "+3 days")>'
 
 AppBundle\Entity\Word:
     word{1..30}:
         user: '@user*'
-        dateCreated: '<dateTimeBetween("-10 days", "now")>'
-        dateUpdated: '<dateTimeBetween("now", "+3 days")>'
+        createdAt: '<dateTimeBetween("-10 days", "now")>'
+        updatedAt: '<dateTimeBetween("now", "+3 days")>'
 
 AppBundle\Entity\WordTranslation:
     wTranslation{1..29}:
@@ -67,15 +67,15 @@ AppBundle\Entity\Wishlist:
     wishlist1:
         words: ['@word*']
         user: '@userAdminDefault1'
-        dateCreated: '<dateTimeBetween("-10 days", "now")>'
-        dateUpdated: '<dateTimeBetween("now", "+3 days")>'
+        createdAt: '<dateTimeBetween("-10 days", "now")>'
+        updatedAt: '<dateTimeBetween("now", "+3 days")>'
     wishlist2:
         words: ['@word*']
         user: '@userDefault2'
-        dateCreated: '<dateTimeBetween("-10 days", "now")>'
-        dateUpdated: '<dateTimeBetween("now", "+3 days")>'
+        createdAt: '<dateTimeBetween("-10 days", "now")>'
+        updatedAt: '<dateTimeBetween("now", "+3 days")>'
     wishlist{3..12}:
         words: ['@word*']
         user (unique): '@user<current()>'
-        dateCreated: '<dateTimeBetween("-10 days", "now")>'
-        dateUpdated: '<dateTimeBetween("now", "+3 days")>'
+        createdAt: '<dateTimeBetween("-10 days", "now")>'
+        updatedAt: '<dateTimeBetween("now", "+3 days")>'

@@ -39,3 +39,7 @@ Last name: Last name
 
 Next: false
 Previous: false
+
+Roles: Roles
+ROLE_ADMIN: ROLE_ADMIN
+ROLE_USER: ROLE_USER

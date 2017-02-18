@@ -38,8 +38,8 @@
                                     <td>{{ word.translate('fr').word }}</td>
                                     <td>{{ word.translate('es').word }}</td>
                                     <td><a href="{{ path('user_show', {'id': word.user.id}) }}">{{ word.user.userProfile.firstName }} {{ word.user.userProfile.lastName }}</a></td>
-                                    <td>{{ word.dateCreated|date("d.m.Y") }}</td>
-                                    <td>{{ word.dateUpdated|date("d.m.Y") }}</td>
+                                    <td>{{ word.createdAt|date("d.m.Y") }}</td>
+                                    <td>{{ word.updatedAt|date("d.m.Y") }}</td>
                                     <td>
                                         {% if is_granted('edit_word', app.user) %}
                                             {% if word in app.user.wishlist.words %}

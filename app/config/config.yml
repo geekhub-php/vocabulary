@@ -76,15 +76,9 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
-# StofDoctrineExtensionsBundle Configuration
-stof_doctrine_extensions:
-    default_locale: en_US
-    orm:
-        default:
-            timestampable: true
-
 knp_doctrine_behaviors:
     translatable: true
+    timestampable: true
 
 a2lix_translation_form:
     locale_provider: default

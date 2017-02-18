@@ -13,7 +13,7 @@ class WordRepository extends \Doctrine\ORM\EntityRepository
     public function findAllWords()
     {
         $query = $this->createQueryBuilder('w')
-            ->orderBy('w.dateCreated', 'DESC')
+            ->orderBy('w.createdAt', 'DESC')
         ;
 
         return $query;
@@ -29,7 +29,7 @@ class WordRepository extends \Doctrine\ORM\EntityRepository
         $query = $this->createQueryBuilder('word')
             ->innerJoin('word.wishlists', 'w', 'WITH', 'w.id = :wishlistId')
             ->setParameter('wishlistId', $wishlistId)
-            ->orderBy('word.dateCreated', 'DESC')
+            ->orderBy('word.createdAt', 'DESC')
         ;
 
         return $query;

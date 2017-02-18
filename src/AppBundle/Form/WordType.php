@@ -36,7 +36,7 @@ class WordType extends AbstractType
         if (isset($this->authorizationChecker) && $this->authorizationChecker->isGranted('ROLE_ADMIN')) {
             $builder->add('user', EntityType::class, array(
                 'class' => 'AppBundle:User',
-                'choice_label' => 'userProfile.firstName userProfile.lastName',
+                'choice_label' => 'username',
                 'label' => 'base.author'
             ));
         }

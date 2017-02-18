@@ -16,6 +16,12 @@ $ composer install
 $ php bin/console doctrine:fixtures:load
 ``` 
 
+####Default users:
+login: admin<br>
+password: admin
+
+login: user<br>
+password: user
 
 Homework 14: Vocabulary
 ==========

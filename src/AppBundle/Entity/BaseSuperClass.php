@@ -3,7 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
+use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -13,6 +13,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 abstract class BaseSuperClass
 {
+    use ORMBehaviors\Timestampable\Timestampable;
+
     /**
      * @var int
      *
@@ -23,26 +25,6 @@ abstract class BaseSuperClass
     protected $id;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(type="datetime")
-     * @Gedmo\Timestampable(on="create")
-     *
-     * @Assert\DateTime()
-     */
-    private $dateCreated;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(type="datetime")
-     * @Gedmo\Timestampable(on="update")
-     *
-     * @Assert\DateTime()
-     */
-    private $dateUpdated;
-
-    /**
      * Get id
      *
      * @return integer
@@ -50,53 +32,5 @@ abstract class BaseSuperClass
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set dateCreated
-     *
-     * @param \DateTime $dateCreated
-     *
-     * @return BaseSuperClass
-     */
-    public function setDateCreated($dateCreated)
-    {
-        $this->dateCreated = $dateCreated;
-
-        return $this;
-    }
-
-    /**
-     * Get dateCreated
-     *
-     * @return \DateTime
-     */
-    public function getDateCreated()
-    {
-        return $this->dateCreated;
-    }
-
-    /**
-     * Set dateUpdated
-     *
-     * @param \DateTime $dateUpdated
-     *
-     * @return BaseSuperClass
-     */
-    public function setDateUpdated($dateUpdated)
-    {
-        $this->dateUpdated = $dateUpdated;
-
-        return $this;
-    }
-
-    /**
-     * Get dateUpdated
-     *
-     * @return \DateTime
-     */
-    public function getDateUpdated()
-    {
-        return $this->dateUpdated;
     }
 }

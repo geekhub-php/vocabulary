@@ -71,7 +71,7 @@ class User extends BaseSuperClass implements AdvancedUserInterface, \Serializabl
     /**
      * @var UserProfile
      *
-     * @ORM\OneToOne(targetEntity="UserProfile", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="UserProfile", cascade={"persist", "remove"})
      *
      * @Assert\Valid
      */
@@ -80,14 +80,14 @@ class User extends BaseSuperClass implements AdvancedUserInterface, \Serializabl
     /**
      * @var Wishlist
      *
-     * @ORM\OneToOne(targetEntity="Wishlist", mappedBy="user", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="Wishlist", mappedBy="user", cascade={"persist", "remove"})
      */
     private $wishlist;
 
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="Word", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Word", mappedBy="user", cascade={"remove"})
      */
     private $words;
 
