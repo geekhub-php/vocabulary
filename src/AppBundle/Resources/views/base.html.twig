@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block docTitle %}{{ 'base.siteTitle'|trans }}{% endblock %}</title>
+        {% block head %}
+            {% include 'AppBundle:base:_head.html.twig' %}
+        {% endblock %}
+    </head>
+    <body class="{% block bodyMainClass 'site-body' %} {% block bodyClass %}{{ app.request.attributes.get('_route') }}{% endblock %}">
+        {% block header %}
+            {% include 'AppBundle:base:_header.html.twig' %}
+        {% endblock %}
+
+        <main class="{% block mainClass 'site-main' %}">
+            {% block main %}{% endblock %}
+        </main>
+
+        {% block footer %}
+            {% include 'AppBundle:base:_footer.html.twig' %}
+        {% endblock %}
+
+        {% block bottom %}
+            {% include 'AppBundle:base:_bottom.html.twig' %}
+        {% endblock %}
+    </body>
+</html>

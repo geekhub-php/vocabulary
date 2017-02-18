@@ -1,0 +1,81 @@
+AppBundle\Entity\User:
+    userAdminDefault1:
+        userProfile (unique): '@uProfile1'
+        username (unique): admin
+        password: admin
+        email: admin@example.com
+        roles: ["ROLE_ADMIN"]
+        createdAt: '<dateTimeBetween("-10 days", "now")>'
+        updatedAt: '<dateTimeBetween("now", "+3 days")>'
+    userDefault2:
+        userProfile (unique): '@uProfile2'
+        username (unique): user
+        password: user
+        email: user@example.com
+        roles: ["ROLE_USER"]
+        createdAt: '<dateTimeBetween("-10 days", "now")>'
+        updatedAt: '<dateTimeBetween("now", "+3 days")>'
+    user{3..12}:
+        userProfile (unique): '@uProfile<current()>'
+        username (unique): '<username()>'
+        password: '<password()>'
+        email (unique): '<email()>'
+        roles: '<randomElements(["ROLE_USER"], 1)>'
+        createdAt: '<dateTimeBetween("-10 days", "now")>'
+        updatedAt: '<dateTimeBetween("now", "+3 days")>'
+
+AppBundle\Entity\UserProfile:
+    uProfile{1..12}:
+        firstName: '<firstName()>'
+        lastName: '<lastName()>'
+        createdAt: '<dateTimeBetween("-10 days", "now")>'
+        updatedAt: '<dateTimeBetween("now", "+3 days")>'
+
+AppBundle\Entity\Word:
+    word{1..30}:
+        user: '@user*'
+        createdAt: '<dateTimeBetween("-10 days", "now")>'
+        updatedAt: '<dateTimeBetween("now", "+3 days")>'
+
+AppBundle\Entity\WordTranslation:
+    wTranslation{1..29}:
+        translatable: '@word<current()>'
+        word: '<word()>'
+        locale: 'en'
+    wTranslation30en:
+        translatable: '@word30'
+        word: 'word'
+        locale: 'en'
+    wTranslation30uk:
+        translatable: '@word30'
+        word: 'слово'
+        locale: 'uk'
+    wTranslation30ru:
+        translatable: '@word30'
+        word: 'слово'
+        locale: 'ru'
+    wTranslation30fr:
+        translatable: '@word30'
+        word: 'mot'
+        locale: 'fr'
+    wTranslation30es:
+        translatable: '@word30'
+        word: 'palabra'
+        locale: 'es'
+
+AppBundle\Entity\Wishlist:
+    wishlist1:
+        words: ['@word*']
+        user: '@userAdminDefault1'
+        createdAt: '<dateTimeBetween("-10 days", "now")>'
+        updatedAt: '<dateTimeBetween("now", "+3 days")>'
+    wishlist2:
+        words: ['@word*']
+        user: '@userDefault2'
+        createdAt: '<dateTimeBetween("-10 days", "now")>'
+        updatedAt: '<dateTimeBetween("now", "+3 days")>'
+    wishlist{3..12}:
+        words: ['@word*']
+        user (unique): '@user<current()>'
+        createdAt: '<dateTimeBetween("-10 days", "now")>'
+        updatedAt: '<dateTimeBetween("now", "+3 days")>'
