@@ -1,0 +1,32 @@
+{
+  "name": "geekhub-php-vocabulary",
+  "version": "0.0.0",
+  "description": "Geekhub PHP HomeWork: Symfony Vocabulary Application",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AndreyLuka/geekhub-php-vocabulary.git"
+  },
+  "author": "Andrey Lukashenko",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AndreyLuka/geekhub-php-vocabulary/issues"
+  },
+  "dependencies": {
+    "bower": "~1.8.0",
+    "gulp": "~3.9.1",
+    "gulp-if": "~2.0.2",
+    "gulp-uglifycss": "~1.0.6",
+    "gulp-concat": "~2.6.1",
+    "gulp-sourcemaps": "~1.9.1",
+    "gulp-uglify": "~2.0.0",
+    "gulp-less": "~3.3.0",
+    "del": "~2.2.2"
+  }
+}

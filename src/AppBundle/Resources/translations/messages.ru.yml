@@ -1,0 +1,41 @@
+base:
+  siteTitle: Словарь
+  search: Поиск
+  save: Сохранить
+  edit: Редактировать
+  update: Обновить
+  delete: Удалить
+  author: Автор
+  created: Создано
+  updated: Обновлено
+  actions: Действия
+  'Hello, %name%': Привет, %name%!
+
+user:
+  signup: Зарегистрироваться
+  login: Вход
+  logout: Выход
+  loggedin: Вы вошли в систему.
+  profile:
+    title: Мой профиль
+
+wishlist:
+  title: Список желаний
+  add: Добавить в список желаний
+  remove: Удалить из списка желаний
+
+word:
+  titleOne: Слово
+  titleMany: Слова
+  new: Добавить новое слово
+  edit: Изменить слово
+
+Email: Электронная почта
+Username: Имя пользователя
+Password: Пароль
+Repeat Password: Повторить пароль
+First name: Имя
+Last name: Фамилия
+
+Next: false
+Previous: false

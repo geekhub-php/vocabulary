@@ -1,0 +1,45 @@
+base:
+  siteTitle: Vocabulary
+  search: Search
+  save: Save
+  edit: Edit
+  update: Update
+  delete: Delete
+  author: Author
+  created: Created
+  updated: Updated
+  actions: Actions
+  'Hello, %name%': Hello, %name%!
+
+user:
+  signup: Sign Up
+  login: Login
+  logout: Logout
+  loggedin: You are logged in.
+  profile:
+    title: My Profile
+
+wishlist:
+  title: Wishlist
+  add: Add to wishlist
+  remove: Remove from wishlist
+
+word:
+  titleOne: Word
+  titleMany: Words
+  new: Add new word
+  edit: Edit word
+
+Email: Email
+Username: Username
+Password: Password
+Repeat Password: Repeat Password
+First name: First name
+Last name: Last name
+
+Next: false
+Previous: false
+
+Roles: Roles
+ROLE_ADMIN: ROLE_ADMIN
+ROLE_USER: ROLE_USER

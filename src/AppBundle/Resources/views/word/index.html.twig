@@ -1,0 +1,71 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block main %}
+    <section class="all-words">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-sm-12">
+
+                    <h2>{{ title }}</h2>
+                    {% if is_granted('create_word', app.user) %}
+                        <p><a href="{{ path('word_new') }}">{{ 'word.new'|trans }}</a></p>
+                    {% endif %}
+
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>{{ 'word.titleOne'|trans }} (en)</th>
+                                <th>{{ 'word.titleOne'|trans }} (uk)</th>
+                                <th>{{ 'word.titleOne'|trans }} (ru)</th>
+                                <th>{{ 'word.titleOne'|trans }} (fr)</th>
+                                <th>{{ 'word.titleOne'|trans }} (es)</th>
+                                <th>{{ 'base.author'|trans }}</th>
+                                <th>{{ 'base.created'|trans }}</th>
+                                <th>{{ 'base.updated'|trans }}</th>
+                                {% if is_granted('edit_word', app.user) %}
+                                    <th>{{ 'base.actions'|trans }}</th>
+                                {% endif %}
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for word in pagination %}
+                                <tr>
+                                    <td>{{ word.translate('en').word }}</td>
+                                    <td>{{ word.translate('uk').word }}</td>
+                                    <td>{{ word.translate('ru').word }}</td>
+                                    <td>{{ word.translate('fr').word }}</td>
+                                    <td>{{ word.translate('es').word }}</td>
+                                    <td><a href="{{ path('user_show', {'id': word.user.id}) }}">{{ word.user.userProfile.firstName }} {{ word.user.userProfile.lastName }}</a></td>
+                                    <td>{{ word.createdAt|date("d.m.Y") }}</td>
+                                    <td>{{ word.updatedAt|date("d.m.Y") }}</td>
+                                    <td>
+                                        {% if is_granted('edit_word', app.user) %}
+                                            {% if word in app.user.wishlist.words %}
+                                                <a class="btn btn-danger btn-xs" href="{{ path('wishlist_remove_word', {'id': app.user.wishlist.id, 'wordId': word.id}) }}">{{ 'wishlist.remove'|trans }}</a>
+                                            {% else %}
+                                                <a class="btn btn-default btn-xs" href="{{ path('wishlist_add_word', {'id': app.user.wishlist.id, 'wordId': word.id}) }}">{{ 'wishlist.add'|trans }}</a>
+                                            {% endif %}
+                                            <a class="btn btn-default btn-xs" href="{{ path('word_edit', {'id': word.id}) }}">{{ 'base.edit'|trans }}</a>
+                                        {% endif %}
+                                        {% if is_granted('edit', word) %}
+                                            <a class="btn btn-danger btn-xs" href="{{ path('word_delete', {'id': word.id}) }}">{{ 'base.delete'|trans }}</a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+                <div class="col-sm-12 text-center">
+                    {{ knp_pagination_render(pagination) }}
+                </div>
+
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,22 @@
+{
+  "name": "geekhub-php-vocabulary",
+  "description": "Geekhub PHP HomeWork: Symfony vocabulary Application",
+  "main": "index.js",
+  "authors": [
+    "Andrey Lukashenko"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/AndreyLuka/geekhub-php-vocabulary",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "html5shiv": "^3.7.3",
+    "respond": "Respond#^1.4.2"
+  }
+}
