@@ -1,4 +1,4 @@
-Geekhub PHP HomeWork#14: Symfony Vocabulary Application - Translations
+Geekhub PHP HomeWork#16: Symfony Vocabulary Application - Tests
 =
 
 ####EER Diagram:
@@ -7,12 +7,17 @@ https://docs.google.com/drawings/d/1gXIQH6vCcoeqFa2ess2fpVgOADpIkfmPAOGW7HD2LCs/
 
 ####Setup:
 
-Note: Before continue, install Node.js.
+Setup database in "app/config/parameters.yml".
+
+Note: Before continue, install Node.js.<br>
+Note 2: "composer install" runs commands "npm i" and "./node_modules/.bin/bower install"
 
 ```bash
-$ git clone -b hw14-andrey-lukashenko https://github.com/AndreyLuka/geekhub-php-vocabulary.git
+$ git clone -b hw16-andrey-lukashenko https://github.com/AndreyLuka/geekhub-php-vocabulary.git
 $ cd geekhub-php-vocabulary
 $ composer install
+$ php bin/console doctrine:database:create
+$ php bin/console doctrine:schema:create
 $ php bin/console doctrine:fixtures:load
 ``` 
 

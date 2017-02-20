@@ -8,7 +8,7 @@ namespace AppBundle\Repository;
 class WordRepository extends \Doctrine\ORM\EntityRepository
 {
     /**
-     * @return \Doctrine\ORM\Query
+     * @return \Doctrine\ORM\QueryBuilder
      */
     public function findAllWords()
     {
@@ -22,7 +22,7 @@ class WordRepository extends \Doctrine\ORM\EntityRepository
     /**
      * @param int $wishlistId
      *
-     * @return \Doctrine\ORM\Query
+     * @return \Doctrine\ORM\QueryBuilder
      */
     public function findAllByWishlist($wishlistId)
     {
