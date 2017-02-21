@@ -2,6 +2,7 @@
 
 namespace AppBundle\Repository\User;
 
+use AppBundle\Entity\User\User;
 /**
  * UserRepository
  *
@@ -10,4 +11,15 @@ namespace AppBundle\Repository\User;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
+    public $name;
+    public function findByNameUser($name){
+        $qb = $this->createQueryBuilder('u');
+        $qb->select('u')
+           // ->from('User', 'u')
+            ->where('u.username =:name')
+            ->setParameter('name', $name);
+             //->getQuery()
+            //->getResult();
+        return $qb->getQuery()->getResult();
+    }
 }

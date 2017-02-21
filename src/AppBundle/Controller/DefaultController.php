@@ -23,10 +23,13 @@ class DefaultController extends Controller
 
   //      return new Response($t);
         $em=$this->getDoctrine()->getManager();
-        $wishlist = $em->getRepository('AppBundle:Wishlist\Wishlist')->findAll();
+        $userName = $em->getRepository('AppBundle:User\User')
+            ->findByNameUser('user');
+        $wishlist = $em->getRepository('AppBundle:Wishlist\Wishlist')
+                 ->findAll();
         //$word->translate('en')->getName();
 
-        dump($wishlist);
+        dump($userName);
         //dump($request->getLocale());
         return $this->render('index.html.twig', array('wishlist'=>$wishlist));
     }

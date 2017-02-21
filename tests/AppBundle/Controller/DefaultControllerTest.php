@@ -8,7 +8,7 @@ class DefaultControllerTest extends WebTestCase
 {
     public function testIndex()
     {
-        $local=array(0=>'bel',1=>'en',2=>'en');
+        $local=array(0=>'bel',1=>'en',2=>'uk');
         $client = static::createClient();
 
         $crawler = $client->request('POST', '/');
@@ -18,7 +18,7 @@ class DefaultControllerTest extends WebTestCase
 
 
         foreach ($local as $value) {
-            $crawler = $client->request('GET', '/'.$value);
+          $crawler = $client->request('GET','/'.$value);
             $response = $client->getResponse();
 
             $this->assertEquals(200, $client->getResponse()->getStatusCode());
