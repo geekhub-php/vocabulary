@@ -1,0 +1,12 @@
+main:
+    navig:
+        home: home
+        information: information
+        login: login
+#    has:
+#        bundles: Symfony2 has bundles
+#user:
+#    login: Login
+
+
+#tmp: J'aime Symfony2

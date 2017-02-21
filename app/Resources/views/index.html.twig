@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+{% block header %}
+<head>
+<title>Welcome to my site friend</title>
+ <link rel="stylesheet" href="{{asset('css/app.css')}}">
+ <script src="{{asset('js/jquery-3.1.1.min.js')}}"></script>
+ <script src="{{asset('js/bootstrap.min.js')}}"></script>
+
+</head>
+{% endblock%}
+{% block body %}
+ <body>
+
+ <div class="row">
+  <div class="col-sm-1"></div>
+  <div class="col-sm-6">
+      <ul class="nav nav-tabs">
+          <li class="active"><a href="{{ path('homepage')}}">{{ 'main.navig.home' | trans }}</a></li>
+          <li><a href="{{ path('information')}}">{{ 'main.navig.information' | trans }}</a></li>
+          <li><a href="{{ path('login')}}">{{ 'main.navig.login' | trans }}</a></li>
+          <li><a href="{{ path('admin',  {'id': wishlist[0].getId})}}">seting</a></li>
+
+      </ul>
+  </div>
+     <div class="col-sm-5">
+         <div class="dropdown">
+             <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Выпадающий список
+             </button>
+             <ul class="dropdown-menu">
+                 <li><a href="{{ path('homepage', {'_locale': 'bel'}) }}">BEL</a></li>
+                 <li><a href="{{ path('homepage', {'_locale': 'uk'}) }}">UK</a></li>
+                 <li><a href="{{ path('homepage', {'_locale': 'en'}) }}">ENG</a></li>
+
+             </ul>
+         </div>
+
+     </div>
+ </div>
+
+
+
+
+
+ </body>
+{% endblock%}
+{% block footer %}
+{% endblock%}
+</html>
